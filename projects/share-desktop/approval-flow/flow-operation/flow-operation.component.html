@@ -1,0 +1,26 @@
+<div class="zdng-form-list">
+  <div class="zdng-form-list-left w80">
+    <span class="color-888">审核人</span>
+  </div>
+  <div class="zdng-form-list-right">
+    <div style="display: inline-block;margin-right: 24px;" *ngFor="let appr of itemFlow?.approverAudits;index as i">
+      <div style="display: flex;flex-direction: column;align-items: center;" (click)="chooseAppr(appr,i)">
+        <nz-avatar nzIcon="anticon anticon-user" [nzShape]="'square'"></nz-avatar>
+        <span>{{appr.name}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="zdng-form-list">
+  <div class="zdng-form-list-left w80">
+    <span class="color-888">抄送人</span>
+  </div>
+  <div class="zdng-form-list-right">
+    <div style="display: inline-block;margin-right: 24px;" *ngFor="let cc of itemFlow?.ccStaff">
+      <div style="display: flex;flex-direction: column;text-align: center;justify-items: center">
+        <nz-avatar nzIcon="anticon anticon-user" [nzShape]="'square'"></nz-avatar>
+        <span>{{cc.name}}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<nz-modal [nzVisible]="isVisible" [nzWidth]="600" [nzClosable]="false" [nzContent]="modalContent" [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()">
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="handleCancel()">取消</button>
+    <button nz-button nzType="primary" (click)="handleOk()">确定</button>
+  </ng-template>
+  <ng-template #modalContent>
+    <div style="position: relative;display: flex; width:600px; height: 360px; overflow: hidden;" *ngIf="isVisible">
+      <zc-map-baidu #map [options]="options" (ready)="onReady($event)" style="height:100%;width:100%;"></zc-map-baidu>
+      <div *ngIf="address" class="work-map {{isAddressOff?'':'work-map-mr'}}">
+        <div class="work-map-fixed" (click)="isAddressOff=!isAddressOff">
+          {{item.placeName}}
+          <p>{{item.address}}</p>
+          <div class="work-map-fixed-right">
+            <i class="iconfont color-fff icon-order-asc" *ngIf="isAddressOff==false"></i>
+            <i class="iconfont color-fff icon-xia" *ngIf="isAddressOff==true"></i>
+          </div>
+        </div>
+        <div class="work-map-body-wk">
+          <div *ngFor="let ad of (address | async) | loadtion; index as adi" class="work-map-body">
+            <div (click)="clickAddress(ad)" class="work-map-list">
+              {{ad.title}}
+              <p>{{ad.address}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="attendance_reportPlaceDialog_search">
+        <input class="attendance_reportPlaceDialog_search_input_text" type="text" placeholder="搜索地点" id="suggestId" name="keyVal"
+          [(ngModel)]="keyVal" (ngModelChange)="keySearch($event)">
+        <div class="attendance_reportPlaceDialog_search_box" *ngIf="keySearchVal.length>0">
+          <div class="arpdsb_item" *ngFor="let item of keySearchVal" (click)="nicheRef(item)">
+            <span>{{item.title}}</span>
+            <p>{{item.address}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</nz-modal>
