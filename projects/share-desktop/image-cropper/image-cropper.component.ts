@@ -19,16 +19,17 @@
  *        folderName = 'formTemplate';
  */
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { ImageUploadService } from './image-upload.service';
-import { ToolsService, MessagesService } from '../service';
+import { MessagesService, ConfigService, Result, isClone, convertBase64UrlToBlob, isGuid } from '../core';
+import { HttpClient } from '@angular/common/http';
+import { map, filter } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'zc-image-cropper',
   templateUrl: './image-cropper.component.html',
   styleUrls: ['./image-cropper.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class ImageCropperComponent implements OnInit {
 
@@ -50,10 +51,12 @@ export class ImageCropperComponent implements OnInit {
 
   private getoss$: any;
 
+  private url$ = `${this.pages.url.fileapi}`;
+
   constructor(
-    private tools: ToolsService,
     private msg: MessagesService,
-    private imageUploadService: ImageUploadService
+    private http: HttpClient,
+    private pages: ConfigService
   ) { }
 
   ngOnInit() {
@@ -77,11 +80,72 @@ export class ImageCropperComponent implements OnInit {
     this.croppedImage = image;
   }
 
+
+  /**
+   * OSS文件上传
+   * @param file 文件
+   * @param folderName 文件夹模块名称
+   */
+  private uploadOSS(file: File, folderName: string) {
+    return this.getSignature().pipe(
+      map(res => {
+        const url = res['host'];
+        const key = res['key'];
+        const formData = new FormData();
+        for (const keys in res) {
+          if (keys !== 'key' && keys !== 'url' && keys !== 'host') {
+            formData.append(keys, res[keys]);
+          }
+        }
+        const _fileSrc = `${key}${folderName}/${new Date().getFullYear()}-${new Date().getMonth() + 1}/${new Date().getDate()}/${this.hashName(file.name)}`;
+        formData.append('url', url);
+        formData.append('key', _fileSrc);
+        formData.append('file', file);
+
+        const xhr = new XMLHttpRequest();
+        // 状态
+        xhr.onreadystatechange = () => {
+          return of({ fileUrl: url + _fileSrc, data: xhr });
+        };
+        xhr.open('POST', url, true);
+        xhr.send(formData);
+        return { fileUrl: url + _fileSrc, data: xhr };
+      })
+    );
+  }
+
+
+  /**
+   * OSS签名
+   */
+  private getSignature() {
+    const url = `${this.url$}file-disk/signature.json`;
+    return this.http.get(url).pipe(
+      filter((v: Result<any>) => v.errCode === 0),
+      map((v: Result<any>) => v.content)
+    );
+  }
+
+
+  /**
+   * hash名称
+   * @param fileName 名称
+   */
+  private hashName(fileName: string) {
+    let guid = '';
+    for (let i = 1; i <= 16; i++) {
+      const n = Math.floor(Math.random() * 16.0).toString(16);
+      guid += n;
+    }
+    const name = fileName.split('.')[fileName.split('.').length - 1];
+    return guid + '.' + name;
+  }
+
   // 图像格式化
   private formatImage() {
     return {
-      base64: this.tools.isClone(this.croppedImage),
-      files: new File([this.tools.convertBase64UrlToBlob(this.croppedImage)], `${this.tools.isGuid(16)}.png`)
+      base64: isClone(this.croppedImage),
+      files: new File([convertBase64UrlToBlob(this.croppedImage)], `${isGuid(16)}.png`)
     };
   }
 
@@ -93,7 +157,7 @@ export class ImageCropperComponent implements OnInit {
       const images = this.formatImage();
       this.isRepeatClick = true;
       if (this.getoss$) { this.getoss$.unsubscribe(); }
-      this.getoss$ = this.imageUploadService.uploadOSS(images.files, this.folderName).subscribe(res => {
+      this.getoss$ = this.uploadOSS(images.files, this.folderName).subscribe(res => {
         res.data.onreadystatechange = (event) => {
           if (event.target['readyState'] === 4) {
             images['fileurl'] = res.fileUrl;

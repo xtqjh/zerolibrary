@@ -5,21 +5,24 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
+import { HttpClientModule } from '@angular/common/http';
 
-import { RangeVisibleModalComponent } from './range-visible-modal/range-visible-modal.component';
+import { OrganizationStructureComponent } from './organization-structure.component';
 
 @NgModule({
-  declarations: [RangeVisibleModalComponent],
-  exports: [RangeVisibleModalComponent],
+  declarations: [OrganizationStructureComponent],
+  exports: [OrganizationStructureComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
     NgZorroAntdModule,
-    MalihuScrollbarModule.forRoot()
+    MalihuScrollbarModule.forRoot(),
+    BrowserAnimationsModule
   ]
 })
 export class OrganizationStructureModule { }

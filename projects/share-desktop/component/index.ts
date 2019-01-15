@@ -1,3 +1,2 @@
 
-export * from './abs-upload.component';
-export * from './scrollbar.component';
+export * from './public-api';

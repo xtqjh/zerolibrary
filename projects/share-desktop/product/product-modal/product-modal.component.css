@@ -1,0 +1,26 @@
+
+.zc_list_back{
+  position: relative;
+  margin-top: 5px;
+}
+.zc_list_back_item{
+  position: relative;
+  padding:5px 0;
+}
+.zc_list_back_item:hover{
+  background-color: #eee;
+}
+
+.zc_list_back_item img{
+  float: left;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e5e5e5;
+  margin-right: 10px;
+  margin-left: 15px;
+}
+
+.zc_list_back_item p{
+  display: block;
+  line-height: 20px;
+}

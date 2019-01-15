@@ -18,12 +18,11 @@ declare const BMAP_NAVIGATION_CONTROL_SMALL: any;
 declare const BMAP_STATUS_SUCCESS: any;
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'zc-map-baidu-position',
   templateUrl: './map-baidu-position.component.html',
   styleUrls: ['./map-baidu-position.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class MapBaiduPositionComponent implements OnInit, OnDestroy {
 

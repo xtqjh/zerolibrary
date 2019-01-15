@@ -4,8 +4,11 @@
  * @描述: 图像裁剪
  */
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImageCropperModule as icModule } from 'ngx-image-cropper';
 
 import { ImageCropperComponent } from './image-cropper.component';
@@ -15,7 +18,10 @@ import { ImageCropperComponent } from './image-cropper.component';
   exports: [ImageCropperComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
+    FormsModule,
     NgZorroAntdModule,
+    BrowserAnimationsModule,
     icModule
   ]
 })

@@ -14,11 +14,10 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectionStra
 import { AbmConfig, LoaderService } from '../loader.service';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'zc-map-baidu-staticimage',
   templateUrl: './map-baidu-staticimage.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class MapBaiduStaticimageComponent implements OnInit, OnChanges {
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { filter, map, tap, switchMap } from 'rxjs/operators';
 import { of, from } from 'rxjs';
-import { ConfigService, ToolsService, Result } from '../service';
+import { ConfigService, Result, isGuid, isObjectDelKay } from '../core';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,7 @@ export class OrganizationStructureService {
 
   constructor(
     private http: HttpClient,
-    private config: ConfigService,
-    private tools: ToolsService
+    private config: ConfigService
   ) {
 
   }
@@ -129,13 +128,13 @@ export class OrganizationStructureService {
       ele.type = 'department';
       ele.icon = 'iconfont icon-wenjianjia';
       ele.title = ele.name;
-      ele.key = this.tools.isGuid(16);
+      ele.key = isGuid(16);
       if (ele.staff) {
         ele.children = ele.staff.map(staff$ => {
           staff$.type = 'staff';
           staff$.icon = 'iconfont icon-touxiang';
           staff$.title = staff$.name;
-          staff$.key = this.tools.isGuid(16);
+          staff$.key = isGuid(16);
           staff$.isLeaf = true;
           return staff$;
         });
@@ -144,8 +143,8 @@ export class OrganizationStructureService {
         const _c$: Array<any> = this.setTreeNodesDMT(ele.sub);
         ele.children.push(..._c$);
       }
-      this.tools.isObjectDelKay(ele, 'staff');
-      this.tools.isObjectDelKay(ele, 'sub');
+      isObjectDelKay(ele, 'staff');
+      isObjectDelKay(ele, 'sub');
     });
     return list$;
   }
@@ -173,7 +172,7 @@ export class OrganizationStructureService {
       ele.type = 'post';
       ele.icon = 'iconfont icon-gangwei';
       ele.title = ele.name;
-      ele.key = this.tools.isGuid(16);
+      ele.key = isGuid(16);
       ele.isLeaf = true;
     });
     return list$;
@@ -202,7 +201,7 @@ export class OrganizationStructureService {
       ele.type = 'tag';
       ele.icon = 'iconfont icon-iconfontlink';
       ele.title = ele.tagName;
-      ele.key = this.tools.isGuid(16);
+      ele.key = isGuid(16);
       ele.isLeaf = true;
     });
     return list$;
@@ -231,14 +230,14 @@ export class OrganizationStructureService {
       ele.type = 'department';
       ele.icon = 'iconfont icon-wenjianjia';
       ele.title = ele.name;
-      ele.key = this.tools.isGuid(16);
+      ele.key = isGuid(16);
       ele.disableCheckbox = true;
       if (ele.post_info) {
         ele.children = ele.post_info.map(post$ => {
           post$.type = 'department_post';
           post$.icon = 'iconfont icon-gangwei';
           post$.title = post$.name;
-          post$.key = this.tools.isGuid(16);
+          post$.key = isGuid(16);
           post$.isLeaf = true;
           return post$;
         });
@@ -247,8 +246,8 @@ export class OrganizationStructureService {
         const _c$: Array<any> = this.setTreeNodesDPT(ele.son);
         ele.children.push(..._c$);
       }
-      this.tools.isObjectDelKay(ele, 'post_info');
-      this.tools.isObjectDelKay(ele, 'son');
+      isObjectDelKay(ele, 'post_info');
+      isObjectDelKay(ele, 'son');
     });
     return list$;
   }

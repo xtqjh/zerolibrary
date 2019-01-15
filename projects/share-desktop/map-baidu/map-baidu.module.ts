@@ -38,9 +38,6 @@ export class MapBaiduModule {
   }
 }
 
-// export { AbmConfig } from './loader.service';
-// export { MapBaiduComponent } from './map-baidu.component';
-
 
 // declarations: [],   // 用到的组件，指令，管道
 // providers: [],      // 依赖注入服务

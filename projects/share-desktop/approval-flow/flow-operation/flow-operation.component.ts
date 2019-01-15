@@ -4,18 +4,17 @@
  * @描述: 流程审批选择
  * @描述: <zc-flow-operation [flowId]="flowId"></zc-flow-operation>
  */
-import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ChangeDetectorRef } from '@angular/core';
 import { from } from 'rxjs';
 import { ChooseOpinion, Employee, WindowsService } from 'jsw-electron-sdk';
 import { ApprovalFlowService } from '../approval-flow.service';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'zc-flow-operation',
   templateUrl: './flow-operation.component.html',
   styleUrls: ['./flow-operation.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class FlowOperationComponent {
 
@@ -36,8 +35,15 @@ export class FlowOperationComponent {
   };
 
   constructor(
+    private zone: NgZone,
+    private cdr: ChangeDetectorRef,
     private approvalFlowService: ApprovalFlowService
-  ) { }
+  ) {
+  }
+
+  private markForCheck() {
+    this.cdr.markForCheck();
+  }
 
   private getLoadFlow(flowId) {
     this.approvalFlowService.loadFlow$(flowId).subscribe(
@@ -91,6 +97,8 @@ export class FlowOperationComponent {
         checked: false
       });
     }
+
+    this.markForCheck();
   }
 
   public chooseAppr(appr, index) {

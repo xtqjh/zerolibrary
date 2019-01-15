@@ -1,0 +1,26 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { PipeModule } from '../core';
+import { ProductModalComponent } from './product-modal/product-modal.component';
+import { ChannelPipe } from './channel.pipe';
+
+@NgModule({
+  declarations: [ProductModalComponent, ChannelPipe],
+  exports: [ProductModalComponent, ChannelPipe],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    NgZorroAntdModule,
+    MalihuScrollbarModule.forRoot(),
+    BrowserAnimationsModule,
+    PipeModule
+  ]
+})
+export class ProductModule { }

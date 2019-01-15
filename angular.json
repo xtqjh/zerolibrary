@@ -20,7 +20,12 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css",
@@ -28,7 +33,10 @@
               "node_modules/desktopstyle/styles.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -126,41 +134,6 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "share": {
-      "root": "projects/share",
-      "sourceRoot": "projects/share/src",
-      "projectType": "library",
-      "prefix": "zc",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/share/tsconfig.lib.json",
-            "project": "projects/share/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/share/src/test.ts",
-            "tsConfig": "projects/share/tsconfig.spec.json",
-            "karmaConfig": "projects/share/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/share/tsconfig.lib.json",
-              "projects/share/tsconfig.spec.json"
-            ],
             "exclude": [
               "**/node_modules/**"
             ]

@@ -20,12 +20,11 @@ import { LoaderService, AbmConfig } from './loader.service';
 declare const BMap: any;
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'zc-map-baidu',
   template: ``,
   styles: [`.angular-baidu-maps-container { display:block; width:100%; height:100%; }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
   providers: [LoaderService, AbmConfig]
 })
 export class MapBaiduComponent implements OnChanges, OnDestroy {
