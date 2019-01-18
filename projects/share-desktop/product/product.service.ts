@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ConfigService, Result } from '../core';
 import { filter, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { ConfigService, Result } from '../core/service/config.service';
 
 @Injectable({
   providedIn: 'root'

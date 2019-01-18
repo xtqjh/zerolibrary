@@ -8,7 +8,7 @@
  */
 import {
   Component, OnInit, OnDestroy, Input, Output, EventEmitter,
-  ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
+  ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { Observable } from 'rxjs';
 

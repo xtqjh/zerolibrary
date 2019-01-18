@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { filter, map, tap, switchMap } from 'rxjs/operators';
 import { of, from } from 'rxjs';
-import { ConfigService, Result, isGuid, isObjectDelKay } from '../core';
+import { ConfigService, Result } from '../core/service/config.service';
+import { isObjectDelKay } from '../core/tools/object';
+import { isGuid } from '../core/tools/string';
 
 @Injectable({
   providedIn: 'root'

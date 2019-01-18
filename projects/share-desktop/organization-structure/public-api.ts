@@ -1,3 +1,3 @@
 
-export * from './organization-structure.component';
-export * from './organization-structure.module';
+export { OrganizationStructureComponent } from './organization-structure.component';
+export { OrganizationStructureModule } from './organization-structure.module';

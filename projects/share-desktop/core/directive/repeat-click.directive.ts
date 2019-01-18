@@ -7,7 +7,7 @@
  */
 import { Directive } from '@angular/core';
 import { Input, ElementRef } from '@angular/core';
-import { addClass, delClass } from '../tools';
+import { addClass, delClass } from '../tools/class';
 
 @Directive({
   selector: '[zcRepeatClick]'

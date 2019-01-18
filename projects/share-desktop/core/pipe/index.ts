@@ -1,8 +1,8 @@
 
-export * from './order-by.pipe';
-export * from './search-list.pipe';
-export * from './object-to-array.pipe';
-export * from './safe-html.pipe';
-export * from './digit-uppercase.pipe';
-export * from './convert-status.pipe';
-export * from './pipe.module';
+export { OrderByPipe } from './order-by.pipe';
+export { SearchListPipe } from './search-list.pipe';
+export { ObjectToArrayPipe } from './object-to-array.pipe';
+export { SafeHtmlPipe } from './safe-html.pipe';
+export { DigitUppercasePipe } from './digit-uppercase.pipe';
+export { ConvertStatusPipe } from './convert-status.pipe';
+export { PipeModule } from './pipe.module';

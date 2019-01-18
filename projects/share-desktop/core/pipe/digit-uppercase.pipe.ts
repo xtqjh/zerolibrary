@@ -5,7 +5,7 @@
  * @使用: {{ 100 | digitUppercase }}
  */
 import { Pipe, PipeTransform } from '@angular/core';
-import { digitUppercase } from '../tools';
+import { digitUppercase } from '../tools/convert';
 
 
 @Pipe({

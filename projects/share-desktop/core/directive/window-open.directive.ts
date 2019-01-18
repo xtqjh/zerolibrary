@@ -5,9 +5,9 @@
  * @使用: <a [options]="{width:900,minWidth:900}" routerLink="/url/all/list" target="_blank">打开窗体</a>
  */
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
-import { ConfigService } from '../service';
 import { WindowsService } from 'jsw-electron-sdk';
-import { isGuid } from '../tools';
+import { ConfigService } from '../service/config.service';
+import { isGuid } from '../tools/string';
 
 @Directive({
   // tslint:disable-next-line:directive-selector

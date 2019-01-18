@@ -1,3 +1,3 @@
 
-export * from './address-linkage/address-linkage.component';
-export * from './address.module';
+export { AddressLinkageComponent } from './address-linkage/address-linkage.component';
+export { AddressModule } from './address.module';

@@ -14,7 +14,7 @@
  *       };
  */
 import { Component, Input, OnDestroy, Output, OnChanges, ChangeDetectionStrategy } from '@angular/core';
-import { ElementRef, EventEmitter, NgZone, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { ElementRef, EventEmitter, NgZone, SimpleChanges } from '@angular/core';
 import { LoaderService, AbmConfig } from './loader.service';
 
 declare const BMap: any;

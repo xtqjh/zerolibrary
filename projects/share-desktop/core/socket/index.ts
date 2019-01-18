@@ -1,2 +1,2 @@
 
-export * from './web-socket.service';
+export { WebSocketService } from './web-socket.service';

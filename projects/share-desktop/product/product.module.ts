@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 
-import { PipeModule } from '../core';
+import { PipeModule } from '../core/pipe/pipe.module';
 import { ProductModalComponent } from './product-modal/product-modal.component';
 import { ChannelPipe } from './channel.pipe';
 

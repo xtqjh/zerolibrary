@@ -9,8 +9,8 @@
  *        </zc-product-modal>
  */
 import { Component, Input, ChangeDetectorRef, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { MalihuScrollbarComponent } from '../../component';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
+import { MalihuScrollbarComponent } from '../../component/scrollbar.component';
 import { ProductService } from '../product.service';
 
 @Component({

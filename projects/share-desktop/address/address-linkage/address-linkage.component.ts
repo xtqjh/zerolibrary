@@ -4,10 +4,10 @@
  * @描述: 三级联动选择
  * @使用: <zc-address-linkage (addressChange)="retData($event)"></zc-address-linkage>
  */
-import { Component, OnDestroy, HostListener, Output, EventEmitter, Input, ChangeDetectionStrategy, ViewEncapsulation, Injectable, ChangeDetectorRef } from '@angular/core';
+import { Component, HostListener, Output, EventEmitter, Input, ChangeDetectionStrategy, ViewEncapsulation, Injectable, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { filter, map } from 'rxjs/operators';
-import { ConfigService } from '../../core';
+import { ConfigService } from '../../core/service/config.service';
 
 @Component({
   selector: 'zc-address-linkage',

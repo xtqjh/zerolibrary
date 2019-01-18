@@ -1,3 +1,3 @@
 
-export * from './approval-flow.module';
-export * from './flow-operation/flow-operation.component';
+export { FlowOperationComponent } from './flow-operation/flow-operation.component';
+export { ApprovalFlowModule } from './approval-flow.module';

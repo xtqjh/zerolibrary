@@ -7,7 +7,7 @@ import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpRes
 import { Subscription } from 'rxjs';
 import { UploadXHRArgs } from 'ng-zorro-antd';
 import { map, switchMap, filter } from 'rxjs/operators';
-import { Result, ConfigService } from '../core';
+import { Result, ConfigService } from '../core/service/config.service';
 
 export class AbsUploadComponet {
 

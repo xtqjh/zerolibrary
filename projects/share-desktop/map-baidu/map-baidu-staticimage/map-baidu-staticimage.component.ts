@@ -10,7 +10,7 @@
  *          [zoom]="14">
  *       </zc-map-baidu-staticimage>
  */
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { AbmConfig, LoaderService } from '../loader.service';
 
 @Component({

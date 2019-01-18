@@ -13,8 +13,8 @@ import { Component, Input, EventEmitter, Output, ViewChild, ChangeDetectorRef, C
 import { NzTreeNodeOptions, NzTreeComponent } from 'ng-zorro-antd';
 import { OrganizationStructureService } from './organization-structure.service';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
-import { MalihuScrollbarComponent } from '../component';
-import { isClone } from '../core';
+import { MalihuScrollbarComponent } from '../component/scrollbar.component';
+import { isClone } from '../core/tools/object';
 
 @Component({
   selector: 'zc-organization-structure',

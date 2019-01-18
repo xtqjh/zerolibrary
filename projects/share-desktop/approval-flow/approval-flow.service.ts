@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { filter, map } from 'rxjs/operators';
-import { ConfigService, MessagesService, Result } from '../core';
+import { ConfigService, Result } from '../core/service/config.service';
+import { MessagesService } from '../core/service/messages.service';
 
 @Injectable({
   providedIn: 'root'

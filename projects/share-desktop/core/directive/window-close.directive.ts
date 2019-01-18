@@ -5,7 +5,6 @@
  * @使用: <a class="zd-btn zd-btn-default" close>取消</a>
  */
 import { Directive, ElementRef, HostListener } from '@angular/core';
-import { ConfigService } from '../service';
 import { WindowsService } from 'jsw-electron-sdk';
 
 @Directive({
