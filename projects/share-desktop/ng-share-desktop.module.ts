@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { DirectiveModule, PipeModule, BullySubjectService } from './core';
+import { DirectiveModule } from './core/directive/directive.module';
+import { PipeModule } from './core/pipe/pipe.module';
 import { MapBaiduModule } from './map-baidu/map-baidu.module';
 import { ImageCropperModule } from './image-cropper/image-cropper.module';
 import { OrganizationStructureModule } from './organization-structure/organization-structure.module';
@@ -31,10 +32,12 @@ export * from './product';
   ]
 })
 export class NgShareDesktopModule {
+  /**
+   * @deprecated Use `NgShareDesktopModule` instead.
+   */
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: NgShareDesktopModule,
-      providers: [BullySubjectService]
+      ngModule: NgShareDesktopModule
     };
   }
 }
