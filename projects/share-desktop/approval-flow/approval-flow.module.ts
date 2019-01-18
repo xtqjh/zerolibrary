@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FlowOperationComponent } from './flow-operation/flow-operation.component';
@@ -17,8 +16,7 @@ const COMPONENT = [
     CommonModule,
     HttpClientModule,
     FormsModule,
-    NgZorroAntdModule,
-    BrowserAnimationsModule
+    NgZorroAntdModule
   ]
 })
 export class ApprovalFlowModule { }

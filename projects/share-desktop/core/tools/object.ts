@@ -72,7 +72,7 @@ export function isClone(obj: any) {
  * @param keys [指定属性]
  * 使用方法: isObjectDelKay(obj, "id")
  */
-export function isObjectDelKay(obj: {}, keys: string) {
+export function isObjectDelKay(obj: any, keys: string) {
   if (!Array.isArray(obj)) {
     for (const i in obj) {
       if (obj.hasOwnProperty(i)) {

@@ -3,5 +3,8 @@
   "dest": "../../dist/share-desktop",
   "lib": {
     "entryFile": "ng-share-desktop.module.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "."
+  ]
 }

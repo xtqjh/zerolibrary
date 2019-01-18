@@ -5,7 +5,6 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
@@ -21,8 +20,7 @@ import { OrganizationStructureComponent } from './organization-structure.compone
     HttpClientModule,
     FormsModule,
     NgZorroAntdModule,
-    MalihuScrollbarModule.forRoot(),
-    BrowserAnimationsModule
+    MalihuScrollbarModule.forRoot()
   ]
 })
 export class OrganizationStructureModule { }

@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AddressLinkageComponent } from './address-linkage/address-linkage.component';
 
@@ -23,8 +22,7 @@ const COMPONENT = [
     CommonModule,
     HttpClientModule,
     FormsModule,
-    NgZorroAntdModule,
-    BrowserAnimationsModule
+    NgZorroAntdModule
   ]
 })
 export class AddressModule { }
