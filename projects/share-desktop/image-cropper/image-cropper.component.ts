@@ -19,7 +19,7 @@
  *        folderName = 'formTemplate';
  */
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, filter } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ConfigService, Result } from '../core/service/config.service';
@@ -123,8 +123,11 @@ export class ImageCropperComponent implements OnInit {
    * OSS签名
    */
   private getSignature() {
+    const _headers = new HttpHeaders()
+      .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
+      .set('X-Requested-With', 'XMLHttpRequest');
     const url = `${this.url$}file-disk/signature.json`;
-    return this.http.get(url).pipe(
+    return this.http.get(url, { headers: _headers }).pipe(
       filter((v: Result<any>) => v.errCode === 0),
       map((v: Result<any>) => v.content)
     );

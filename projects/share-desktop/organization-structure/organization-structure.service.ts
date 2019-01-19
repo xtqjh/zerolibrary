@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { filter, map, tap, switchMap } from 'rxjs/operators';
 import { of, from } from 'rxjs';
 import { ConfigService, Result } from '../core/service/config.service';
@@ -13,6 +13,10 @@ export class OrganizationStructureService {
 
   private jswapi = this.config.url.jswapi;
   private hr = this.config.url.hr;
+
+  private _headers = new HttpHeaders()
+    .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
+    .set('X-Requested-With', 'XMLHttpRequest');
 
   constructor(
     private http: HttpClient,
@@ -29,7 +33,7 @@ export class OrganizationStructureService {
     if (json) {
       return of(JSON.parse(json));
     }
-    return this.http.get(`${this.jswapi}app/token_get_company_uuid`)
+    return this.http.get(`${this.jswapi}app/token_get_company_uuid`, { headers: this._headers })
       .pipe(
         filter((v: Result<any>) => v.errCode === 0),
         map((v: Result<any>) => v.content),
@@ -45,7 +49,7 @@ export class OrganizationStructureService {
     if (json) {
       return of(JSON.parse(json));
     }
-    return this.http.get(`${this.jswapi}staff/admin_mail`, { params: data })
+    return this.http.get(`${this.jswapi}staff/admin_mail`, { headers: this._headers, params: data })
       .pipe(
         filter((v: Result<any>) => v.errCode === 0),
         map((v: Result<any>) => v.content),
@@ -115,7 +119,7 @@ export class OrganizationStructureService {
     if (json) {
       return of(JSON.parse(json));
     }
-    return this.http.get(this.jswapi + 'company/department_tree/staff')
+    return this.http.get(this.jswapi + 'company/department_tree/staff', { headers: this._headers })
       .pipe(
         filter((v: Result<any>) => v.errCode === 0),
         map((v: Result<any>) => v.content),
@@ -159,7 +163,7 @@ export class OrganizationStructureService {
     if (json) {
       return of(JSON.parse(json));
     }
-    return this.http.get(this.jswapi + 'company/post?size=999')
+    return this.http.get(this.jswapi + 'company/post?size=999', { headers: this._headers })
       .pipe(
         filter((v: Result<any>) => v.errCode === 0),
         map((v: Result<any>) => v.content.content),
@@ -188,7 +192,7 @@ export class OrganizationStructureService {
     if (json) {
       return of(JSON.parse(json));
     }
-    return this.http.get(this.hr + 'recruit/tag?method=info')
+    return this.http.get(this.hr + 'recruit/tag?method=info', { headers: this._headers })
       .pipe(
         filter((v: Result<any>) => v.errCode === 0),
         map((v: Result<any>) => v.content),
@@ -217,7 +221,7 @@ export class OrganizationStructureService {
     if (json) {
       return of(JSON.parse(json));
     }
-    return this.http.get(this.jswapi + 'company_new/Department_post/getDepartmentPostTree')
+    return this.http.get(this.jswapi + 'company_new/Department_post/getDepartmentPostTree', { headers: this._headers })
       .pipe(
         filter((v: Result<any>) => v.errCode === 0),
         map((v: Result<any>) => v.content),

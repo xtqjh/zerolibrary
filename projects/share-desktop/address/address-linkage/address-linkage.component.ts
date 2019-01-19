@@ -5,7 +5,7 @@
  * @使用: <zc-address-linkage (addressChange)="retData($event)"></zc-address-linkage>
  */
 import { Component, HostListener, Output, EventEmitter, Input, ChangeDetectionStrategy, ViewEncapsulation, Injectable, ChangeDetectorRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { filter, map } from 'rxjs/operators';
 import { ConfigService } from '../../core/service/config.service';
 
@@ -74,7 +74,10 @@ export class AddressLinkageComponent {
   // 获取地址列表
   private getAddress(_code, _type) {
     const _url = `${this.address}address-area?parentCode=${_code}`;
-    this.http.get(_url).pipe(
+    const _headers = new HttpHeaders()
+      .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
+      .set('X-Requested-With', 'XMLHttpRequest');
+    this.http.get(_url, { headers: _headers }).pipe(
       filter(v => v['errCode'] === 0),
       map(v => v['content'])
     ).subscribe(v => {

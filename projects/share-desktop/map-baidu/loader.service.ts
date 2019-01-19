@@ -8,7 +8,7 @@ export class AbmConfig {
   /**
    * APP KEY 必填项
    */
-  apiKey: string;
+  apiKey?: string;
 
   /**
    * 默认：api.map.baidu.com/api
@@ -52,6 +52,7 @@ export class LoaderService {
   private _cog: any;
   constructor(@Inject('AbmConfig') public cog: AbmConfig) {
     this._cog = Object.assign(<AbmConfig>{
+      apiKey: 'qOz9QmXd4l6hAOY4SFAUst4P',
       apiProtocol: 'auto',
       apiVersion: '3.0',
       apiCallback: 'angularBaiduMapsLoader',

@@ -1,7 +1,7 @@
 <div style="padding:60px;">
   <button (click)="isVisible=!isVisible">{{isVisible}}</button>
 
-  <zc-product-modal [(isVisible)]="isVisible" [beChosen]="viewRanges" (result)="retData($event)"></zc-product-modal>
+  <!-- <zc-product-modal [(isVisible)]="isVisible" [beChosen]="viewRanges" (result)="retData($event)"></zc-product-modal> -->
 
   <!-- <zc-map-baidu-staticimage [longitude]="map.longitude" [latitude]="map.latitude" [width]="250" [height]="130" [zoom]="14"></zc-map-baidu-staticimage> -->
 
@@ -10,7 +10,7 @@
     (retImage)="retData($event)">
   </zc-image-cropper> -->
 
-  <!-- <zc-address-linkage (addressChange)="retData($event)"></zc-address-linkage> -->
+  <zc-address-linkage (addressChange)="retData($event)"></zc-address-linkage>
 
   <!-- <zc-map-baidu-position [(isVisible)]="isVisible" (retPlacePlace)="retData($event)"></zc-map-baidu-position> -->
 

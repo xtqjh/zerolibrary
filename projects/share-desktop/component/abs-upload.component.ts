@@ -13,6 +13,10 @@ export class AbsUploadComponet {
 
   private fileapi = `${this.config$.url.fileapi}`;
 
+  private _headers = new HttpHeaders()
+    .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
+    .set('X-Requested-With', 'XMLHttpRequest');
+
   constructor(
     protected http$: HttpClient,
     protected config$: ConfigService
@@ -55,7 +59,7 @@ export class AbsUploadComponet {
   }
 
   private buildSing$() {
-    return this.http$.get(`${this.fileapi}file-disk/signature.json`)
+    return this.http$.get(`${this.fileapi}file-disk/signature.json`, { headers: this._headers })
       .pipe(
         filter((res: Result<OssUploadSing>) => res.errCode === 0),
         map((res: Result<OssUploadSing>) => res.content),
