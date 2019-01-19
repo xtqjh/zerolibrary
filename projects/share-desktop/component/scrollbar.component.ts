@@ -3,10 +3,12 @@
  * @时间: 2018-11-02 10:49:19
  * @描述: 滚动条
  */
-import { OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { OnDestroy, AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 
-export class MalihuScrollbarComponent implements AfterViewInit, OnDestroy {
+export abstract class MalihuScrollbarComponent implements AfterViewInit, OnDestroy {
+
+  timer = null;
 
   protected scrollbar$: Array<string> = [];
 
@@ -14,7 +16,9 @@ export class MalihuScrollbarComponent implements AfterViewInit, OnDestroy {
     protected changeDetectorRef$: ChangeDetectorRef,
     protected mScrollbarService$: MalihuScrollbarService
   ) {
-
+    this.timer = setTimeout(() => {
+      this.ngAfterViewInit();
+    });
   }
 
   /**
@@ -36,6 +40,11 @@ export class MalihuScrollbarComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+
     console.log(this.scrollbar$);
     this.scrollbar$.forEach(ele => {
       this.mScrollbarService$.initScrollbar(ele, {

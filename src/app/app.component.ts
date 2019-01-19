@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { MalihuScrollbarComponent } from 'ng-share-desktop';
+import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent extends MalihuScrollbarComponent {
 
   isVisible = false;
 
@@ -26,6 +28,15 @@ export class AppComponent {
   viewRanges = [];
 
   flowId = 3081;
+
+  scrollbar$ = ['#container'];
+
+  constructor(
+    changeDetectorRef$: ChangeDetectorRef,
+    mScrollbarService$: MalihuScrollbarService
+  ) {
+    super(changeDetectorRef$, mScrollbarService$);
+  }
 
   public retData(event) {
     console.log(event);

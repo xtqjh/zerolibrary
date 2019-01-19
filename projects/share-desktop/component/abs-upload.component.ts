@@ -8,8 +8,9 @@ import { Subscription } from 'rxjs';
 import { UploadXHRArgs } from 'ng-zorro-antd';
 import { map, switchMap, filter } from 'rxjs/operators';
 import { Result, ConfigService } from '../core/service/config.service';
+import { Component } from '@angular/core';
 
-export class AbsUploadComponet {
+export abstract class AbsUploadComponet {
 
   private fileapi = `${this.config$.url.fileapi}`;
 
