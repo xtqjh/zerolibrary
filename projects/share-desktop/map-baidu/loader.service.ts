@@ -49,15 +49,16 @@ export class AbmConfig {
 })
 export class LoaderService {
   private _scriptLoadingPromise: Promise<void>;
-  private _cog: any;
-  constructor(@Inject('AbmConfig') public cog: AbmConfig) {
-    this._cog = Object.assign(<AbmConfig>{
+  public cog: any;
+  // @Inject('AbmConfig') public cog: AbmConfig
+  constructor() {
+    this.cog = {
       apiKey: 'qOz9QmXd4l6hAOY4SFAUst4P',
       apiProtocol: 'auto',
       apiVersion: '3.0',
       apiCallback: 'angularBaiduMapsLoader',
       apiHostAndPath: 'api.map.baidu.com/api'
-    }, cog);
+    };
   }
 
   load(): Promise<void> {
@@ -73,7 +74,7 @@ export class LoaderService {
 
     this._scriptLoadingPromise = new Promise<void>((resolve: Function, reject: Function) => {
 
-      (<any>window)[this._cog.apiCallback] = () => { resolve(); };
+      (<any>window)[this.cog.apiCallback] = () => { resolve(); };
 
       script.onerror = (error: Event) => { reject(error); };
     });
@@ -84,7 +85,7 @@ export class LoaderService {
 
   private _getSrc(): string {
     let protocol: string;
-    switch (this._cog.apiProtocol) {
+    switch (this.cog.apiProtocol) {
       case 'http':
         protocol = 'http:';
         break;
@@ -96,9 +97,9 @@ export class LoaderService {
         break;
     }
     const queryParams: { [key: string]: string | string[] } = {
-      v: this._cog.apiVersion,
-      ak: this._cog.apiKey,
-      callback: this._cog.apiCallback
+      v: this.cog.apiVersion,
+      ak: this.cog.apiKey,
+      callback: this.cog.apiCallback
     };
     const params: string =
       Object.keys(queryParams)
@@ -113,7 +114,7 @@ export class LoaderService {
         })
         .map((entry: { key: string, value: string }) => `${entry.key}=${entry.value}`)
         .join('&');
-    return `${protocol}//${this._cog.apiHostAndPath}?${params}`;
+    return `${protocol}//${this.cog.apiHostAndPath}?${params}`;
   }
 }
 

@@ -3,14 +3,12 @@
  * @时间: 2018-08-01 14:47:23
  * @描述: 百度地图
  */
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
-import { AbmConfig, LoaderService } from './loader.service';
 import { LoadtionPipe } from './loadtion.pipe';
-
 import { MapBaiduComponent } from './map-baidu.component';
 import { MapBaiduPositionComponent } from './map-baidu-position/map-baidu-position.component';
 import { MapBaiduStaticimageComponent } from './map-baidu-staticimage/map-baidu-staticimage.component';
@@ -26,17 +24,7 @@ const COMPONENT = [
   exports: [...COMPONENT, LoadtionPipe],
   imports: [CommonModule, FormsModule, NgZorroAntdModule]
 })
-export class MapBaiduModule {
-  static forRoot(config: AbmConfig): ModuleWithProviders {
-    return {
-      ngModule: MapBaiduModule,
-      providers: [
-        LoaderService,
-        { provide: 'AbmConfig', useValue: config }
-      ]
-    };
-  }
-}
+export class MapBaiduModule { }
 
 
 // declarations: [],   // 用到的组件，指令，管道

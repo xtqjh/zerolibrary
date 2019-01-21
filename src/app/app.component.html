@@ -5,14 +5,14 @@
 
   <!-- <zc-map-baidu-staticimage [longitude]="map.longitude" [latitude]="map.latitude" [width]="250" [height]="130" [zoom]="14"></zc-map-baidu-staticimage> -->
 
+  <zc-map-baidu-position [(isVisible)]="isVisible" (retPlacePlace)="retData($event)"></zc-map-baidu-position>
+
   <!-- <button (click)="isVisibleCro=!isVisibleCro">isVisibleCro</button>
   <zc-image-cropper [(isVisible)]="isVisibleCro" [resizeToWidth]="icWidht" [aspectRatio]="icRatio" [folderName]="folderName"
     (retImage)="retData($event)">
   </zc-image-cropper> -->
 
   <!-- <zc-address-linkage (addressChange)="retData($event)"></zc-address-linkage> -->
-
-  <!-- <zc-map-baidu-position [(isVisible)]="isVisible" (retPlacePlace)="retData($event)"></zc-map-baidu-position> -->
 
   <!-- <zc-organization-structure [(isVisible)]="isVisible" [beChosen]="viewRanges" (result)="retData($event)"></zc-organization-structure> -->
 

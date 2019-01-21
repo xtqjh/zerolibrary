@@ -3,11 +3,11 @@
 组件库
 
 ## 编译发布的包
-`ng build package-name` 
+`ng build share-desktop` 
 
 ## 上传发布的包
-`cd package-name`
+`cd dist/share-desktop`
 `npm publish` 
 
 ## 删除发布的包
-`npm unpublish "package-name" --force` 
+`npm unpublish "share-desktop" --force` 
