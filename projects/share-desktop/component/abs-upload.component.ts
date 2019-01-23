@@ -8,21 +8,19 @@ import { Subscription } from 'rxjs';
 import { UploadXHRArgs } from 'ng-zorro-antd';
 import { map, switchMap, filter } from 'rxjs/operators';
 import { Result, ConfigService } from '../core/service/config.service';
-import { Component } from '@angular/core';
 
 export abstract class AbsUploadComponet {
 
-  private fileapi = `${this.config$.url.fileapi}`;
+  private http: HttpClient;
+  private config: ConfigService;
+
+  private fileapi = `${this.config.url.fileapi}`;
 
   private _headers = new HttpHeaders()
     .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
     .set('X-Requested-With', 'XMLHttpRequest');
 
-  constructor(
-    protected http$: HttpClient,
-    protected config$: ConfigService
-  ) {
-  }
+  constructor() { }
 
   private buildPostData(args: UploadXHRArgs) {
     return this.buildSing$()
@@ -60,7 +58,7 @@ export abstract class AbsUploadComponet {
   }
 
   private buildSing$() {
-    return this.http$.get(`${this.fileapi}file-disk/signature.json`, { headers: this._headers })
+    return this.http.get(`${this.fileapi}file-disk/signature.json`, { headers: this._headers })
       .pipe(
         filter((res: Result<OssUploadSing>) => res.errCode === 0),
         map((res: Result<OssUploadSing>) => res.content),
@@ -90,7 +88,7 @@ export abstract class AbsUploadComponet {
   public uploadRequest = (args: UploadXHRArgs): Subscription => {
     return this.buildPostData(args)
       .pipe(
-        switchMap(req => this.http$.request(req))
+        switchMap(req => this.http.request(req))
       )
       .subscribe((event: HttpEvent<{}>) => {
         if (event.type === HttpEventType.UploadProgress) {
