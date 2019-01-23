@@ -4,7 +4,7 @@
  * @描述: 渠道翻译（英文名转中文名）
  */
 import { Pipe, PipeTransform } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { filter, map, tap } from 'rxjs/operators';
 import { ConfigService, Result } from '../core/service/config.service';
 
@@ -12,6 +12,10 @@ import { ConfigService, Result } from '../core/service/config.service';
   name: 'channel'
 })
 export class ChannelPipe implements PipeTransform {
+
+  private _headers = new HttpHeaders()
+    .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
+    .set('X-Requested-With', 'XMLHttpRequest');
 
   private custom = `${this.config.url.custom}`;
 
@@ -44,7 +48,7 @@ export class ChannelPipe implements PipeTransform {
       this.channels = JSON.parse(json);
       return;
     } else {
-      this.http.get(`${this.custom}channels`)
+      this.http.get(`${this.custom}channels`, { headers: this._headers })
         .pipe(
           filter((v: Result<any>) => v.errCode === 0),
           map((v: Result<any>) => v.content),

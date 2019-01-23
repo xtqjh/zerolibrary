@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { filter, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ConfigService, Result } from '../core/service/config.service';
@@ -8,6 +8,10 @@ import { ConfigService, Result } from '../core/service/config.service';
   providedIn: 'root'
 })
 export class ProductService {
+
+  private _headers = new HttpHeaders()
+    .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
+    .set('X-Requested-With', 'XMLHttpRequest');
 
   private custom = this.config.url.custom;
 
@@ -26,7 +30,7 @@ export class ProductService {
     if (json) {
       return of(JSON.parse(json));
     }
-    return this.http.get(`${this.custom}products?supplier`, { params: params })
+    return this.http.get(`${this.custom}products?supplier`, { headers: this._headers, params: params })
       .pipe(
         filter((v: Result<any>) => v.errCode === 0),
         map((v: Result<any>) => v.content.content),

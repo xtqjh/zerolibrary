@@ -6,6 +6,7 @@ import { LoadingDirective } from './loading.directive';
 import { RepeatClickDirective } from './repeat-click.directive';
 import { DragDirective } from './drag.directive';
 import { ScalingDirective } from './scaling.directive';
+import { PlayerDirective } from './player.directive';
 
 
 const DIRECTIVE = [
@@ -14,7 +15,8 @@ const DIRECTIVE = [
   LoadingDirective,
   RepeatClickDirective,
   DragDirective,
-  ScalingDirective
+  ScalingDirective,
+  PlayerDirective
 ];
 
 @NgModule({
