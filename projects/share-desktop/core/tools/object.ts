@@ -1,3 +1,4 @@
+import { humpToLower } from "./string";
 
 
 /**
@@ -111,3 +112,17 @@ export function setFormatGetUrl(data: any): string {
   return ret;
 }
 
+
+/**
+ * 对象中驼峰属性转换为下划线
+ * @param obj 对象
+ */
+export function objectFormatKey(obj) {
+  let $jsonStr = JSON.stringify(obj);
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      $jsonStr = $jsonStr.replace(key, humpToLower(key));
+    }
+  }
+  return JSON.parse($jsonStr);
+}
