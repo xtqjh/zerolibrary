@@ -1,0 +1,38 @@
+<div class="app_stage_cnt">
+  <div class="temp-wk">
+
+    <div class="temp-left">
+      <!-- 模板名称 -->
+      <div class="temp-left-title">{{dynForm.get('name').value}}</div>
+      <!-- 控件列表 -->
+      <zc-form-control-index #formControlIndex [(fields)]="dynForm.controls['fields']" [parameter]="parameter"
+        (fieldSelectChange)="tempedit=$event"></zc-form-control-index>
+
+      <div class="temp-left-btn cur-p" (click)="openLibraryBox()">
+        <i class="iconfont icon-icon color-blue"></i>
+        <span class="pd-l5  color-blue">添加控件</span>
+      </div>
+      <!--控件库-->
+      <div #tempLeftAddwk class="temp-left-addwk" *ngIf="tempadd" (blur)="tempadd=!tempadd" tabindex="0" style="outline:none;">
+        <zc-form-control-library [parameter]="parameter" (resLibraryChange)="resLibraryChange($event)"></zc-form-control-library>
+      </div>
+      <!--控件库 end-->
+    </div>
+
+    <div class="temp-right">
+      <!-- 模板名称与图标 -->
+      <zc-form-template-alter [item]="dynForm.value" [parameter]="parameter" (resItemChange)="resItemChange($event)"></zc-form-template-alter>
+      <!-- 控件属性 -->
+      <zc-form-control-parameter [fields]="dynForm.controls['fields']" [parameter]="parameter" [guid]="tempedit" *ngIf="tempedit"></zc-form-control-parameter>
+    </div>
+
+  </div>
+  <div class="pd-t20">
+    <!-- <button class="zd-btn zd-btn-blue" (click)="onSubmit()" [jswRepeatClick]="submitStatus">
+      <span>保存</span>
+    </button> -->
+    <button class="zd-btn zd-btn-blue" (click)="onSubmit()">
+      <span>保存</span>
+    </button>
+  </div>
+</div>

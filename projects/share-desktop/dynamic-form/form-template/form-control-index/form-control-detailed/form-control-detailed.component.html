@@ -1,0 +1,47 @@
+<div class="temp-list back-fff" [class.temp-list-active]="item.get('select$').value">
+  <span>{{item.get('name').value || '组名称'}}</span>
+  <div class="temp-form-column">
+    <!--未添加子控件状态-->
+    <div class="temp-form-column text-center">
+      <p class="font-size12 line-30">可添加多个控件(不包含明细控件)</p>
+    </div>
+
+    <!--子控件-->
+    <ng-container *ngFor="let field of item.get('fields').value;let i = index" [ngSwitch]="true">
+      <!-- 文件 -->
+      <ng-container class="temp-form-fu" *ngSwitchCase="field?.type=='File' || field?.type=='Image'">
+        <zc-form-control-file [item]="field" (resRemove)="setItemRemove($event,i)" (click)="setItemSelect(field)"></zc-form-control-file>
+      </ng-container>
+
+      <!-- 选择 -->
+      <ng-container class="temp-form-fu" *ngSwitchCase="field?.type=='SingleChoose' || field?.type=='Choose' || field?.type=='Area' || field?.type=='Product' || field?.type=='Customer' || field?.type=='Formula' || field?.type=='Boolean'">
+        <zc-form-control-select [item]="field" (resRemove)="setItemRemove($event,i)" (click)="setItemSelect(field)"></zc-form-control-select>
+      </ng-container>
+
+      <ng-container class="temp-form-fu" *ngSwitchDefault>
+        <zc-form-control-input [item]="field" (resRemove)="setItemRemove($event,i)" (click)="setItemSelect(field)"></zc-form-control-input>
+      </ng-container>
+    </ng-container>
+    <!--子控件 end-->
+
+    <div class="temp-form-column cur-p pos-rel text-center pd-b10 pd-t10" (click)="openLibraryBoxEs()">
+      <p class="pd-b10">
+        <span class="font-size14 line-20 pd-l5  color-blue">添加子控件</span>
+      </p>
+    </div>
+    <!--*ngIf="tempadd" (blur)="tempadd=!tempadd"-->
+    <!--控件库-->
+    <div #tempLeftAddwkes class="temp-left-addwk" *ngIf="tempadd" (blur)="tempadd=!tempadd" tabindex="0" style="outline:none;">
+      <zc-form-control-library [subordinate]="true" (resLibraryChange)="resLibraryChange($event)"></zc-form-control-library>
+    </div>
+    <!--控件库 end-->
+
+    <div class="border-top pd-t10 temp-form-fu" *ngIf="item.get('enableRepeat').value">
+      <i class="iconfont icon-wuuiconxiangjifangda color-d8"></i>
+      <span class="color-888 pd-l10">添加明细</span>
+    </div>
+  </div>
+  <div class="temp-list-close" (click)="resRemove.emit(true)">
+    <span class="iconfont icon-guanbi4 font-size12"></span>
+  </div>
+</div>

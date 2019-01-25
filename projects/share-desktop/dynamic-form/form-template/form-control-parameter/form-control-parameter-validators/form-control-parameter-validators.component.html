@@ -1,0 +1,47 @@
+<form [formGroup]="item">
+  <ng-container *ngIf="item.value?.validators">
+    <ng-container formArrayName="validators">
+      <ng-container *ngFor="let vali of item.controls['validators']['controls']; let i=index;">
+        <ng-container [formGroupName]="i">
+          <ng-container *ngIf="vali.get('type').value=='async'">
+            <div class="form-edit_item">
+              <div class="form-edit_item_left"><span class="font-size14">校验地址</span></div>
+              <div class="form-edit_item_right"><textarea class="form_textarea temp-form-textarea" formControlName="validUrl"
+                  placeholder="异步校验接口地址"></textarea></div>
+            </div>
+            <div class="form-edit_item">
+              <div class="form-edit_item_left"><span class="font-size14">请求方式</span></div>
+              <div class="form-edit_item_right">
+                <select class="form_select" formControlName="method" placeholder="请求方式">
+                  <option value="GET">GET</option>
+                  <option value="POST">POST</option>
+                  <option value="PUT">PUT</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-edit_item" *ngIf="vali.value?.bodyArr">
+              <div class="form-edit_item_left"><span class="font-size14">请求参数</span></div>
+              <div class="form-edit_item_right" formArrayName="bodyArr">
+                <ng-container *ngFor="let body of vali.controls['bodyArr']['controls']; let k=index;">
+                  <div class="mg-b10" [formGroupName]="k">
+                    <input class="form_input" style="width:75px;" formControlName="label" (ngModelChange)="asyncBodyChange()">
+                    <!-- <input class="form_input mg-l5" style="width:140px;" formControlName="value" (ngModelChange)="asyncBodyChange()"> -->
+                    <select class="form_select mg-l5" style="width:140px;" formControlName="value" (ngModelChange)="asyncBodyChange()">
+                      <ng-container *ngFor="let option of control">
+                        <option value="{{option.guid}}">{{option.name}}</option>
+                      </ng-container>
+                    </select>
+                    <span class="temp-validators-remove">
+                      <i class="iconfont icon-jian font-size18 cur-p color-d8 " (click)="removeAsyncBody(k)"></i>
+                    </span>
+                  </div>
+                </ng-container>
+                <a nz-button nzType="dashed" class="text-center font-size12 color-666" (click)="addAsyncBody()">添加请求参数</a>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</form>

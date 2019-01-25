@@ -8,6 +8,7 @@ import { OrganizationStructureModule } from './organization-structure/organizati
 import { AddressModule } from './address/address.module';
 import { ApprovalFlowModule } from './approval-flow/approval-flow.module';
 import { ProductModule } from './product/product.module';
+import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
 
 export * from './core';
 export * from './component';
@@ -18,6 +19,7 @@ export * from './organization-structure';
 export * from './address';
 export * from './approval-flow';
 export * from './product';
+export * from './dynamic-form';
 
 @NgModule({
   exports: [
@@ -28,7 +30,8 @@ export * from './product';
     OrganizationStructureModule,
     AddressModule,
     ApprovalFlowModule,
-    ProductModule
+    ProductModule,
+    DynamicFormModule
   ]
 })
 export class NgShareDesktopModule {

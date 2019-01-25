@@ -1,0 +1,8 @@
+<div class="form-edit_item">
+  <div class="form-edit_item_left w100">
+    <span>{{field.name}}</span>
+  </div>
+  <div class="form-edit_item_right">
+    <nz-date-picker [(ngModel)]="field.value" (ngModelChange)="onChange($event)" nzShowTime></nz-date-picker>
+  </div>
+</div> 

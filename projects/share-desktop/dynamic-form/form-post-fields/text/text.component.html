@@ -1,0 +1,8 @@
+<div class="form-edit_item">
+  <div class="form-edit_item_left w100">
+    <span>{{field.name}}</span>
+  </div>
+  <div class="form-edit_item_right">
+    <input nz-input [type]="fieldType(field)" name="{{field.id}}" (change)="ngValueChanges($event)">
+  </div>
+</div>

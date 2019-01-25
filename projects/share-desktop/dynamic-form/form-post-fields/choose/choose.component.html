@@ -1,0 +1,15 @@
+<div class="form-edit_item">
+  <div class="form-edit_item_left w100">
+    <span>{{field.name}}</span>
+  </div>
+  <div class="form-edit_item_right">
+    <nz-radio-group [(ngModel)]="field.value" *ngIf="field.candidates.length < 5" (ngModelChange)="ngValueChanges($event)">
+      <label nz-radio nzValue="{{cand}}" *ngFor="let cand of field.candidates">{{cand}}</label>
+    </nz-radio-group>
+
+    <nz-select *ngIf="field.candidates.length >= 5" [(ngModel)]="field.value" nzShowSearch nzAllowClear nzPlaceHolder="{{field.placeholder}}"
+      (ngModelChange)="ngValueChanges($event)">
+      <nz-option *ngFor="let cand of field.candidates" nzLabel="{{cand}}" nzValue="{{cand}}"></nz-option>
+    </nz-select>
+  </div>
+</div>

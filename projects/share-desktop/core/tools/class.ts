@@ -18,7 +18,7 @@ export function hasClass(elem, cls): boolean {
  * @param cls 样式名称
  */
 export function addClass(ele, cls) {
-  if (!this.hasClass(ele, cls)) {
+  if (!hasClass(ele, cls)) {
     ele.className = ele.className === '' ? cls : ele.className + ' ' + cls;
   }
 }

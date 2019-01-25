@@ -1,4 +1,4 @@
-import { humpToLower } from "./string";
+import { humpToLower } from './string';
 
 
 /**
@@ -53,14 +53,14 @@ export function isClone(obj: any) {
   if (obj instanceof Array) {
     const copy = [];
     for (let i = 0, len = obj.length; i < len; ++i) {
-      copy[i] = this.isClone(obj[i]);
+      copy[i] = isClone(obj[i]);
     }
     return copy;
   }
   if (obj instanceof Object) {
     const copy = {};
     for (const attr in obj) {
-      if (obj.hasOwnProperty(attr)) { copy[attr] = this.isClone(obj[attr]); }
+      if (obj.hasOwnProperty(attr)) { copy[attr] = isClone(obj[attr]); }
     }
     return copy;
   }
@@ -81,14 +81,14 @@ export function isObjectDelKay(obj: any, keys: string) {
           delete obj[i];
         }
         if (Array.isArray(obj[i])) {
-          this.isObjectDelKay(obj[i], keys);
+          isObjectDelKay(obj[i], keys);
         }
       }
     }
   } else {
     for (const i in obj) {
       if (obj.hasOwnProperty(i)) {
-        this.isObjectDelKay(obj[i], keys);
+        isObjectDelKay(obj[i], keys);
       }
     }
   }

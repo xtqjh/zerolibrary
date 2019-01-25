@@ -1,0 +1,78 @@
+<form [formGroup]="item">
+  <div class="form-edit_item">
+    <div class="form-edit_item_left">
+      <span class="font-size14">公式</span>
+    </div>
+    <div class="form-edit_item_right">
+      <div style="display:inline-grid;">
+        <div class="back-f4 cur-p float-left" style="padding:0 5px;min-height:28px;width:266px;" (click)="isFormula=!isFormula">
+          <i class="mg-r5 iconfont icon-gouxuanzhong font-size12 color-green" *ngIf="formTemplateService.isFormula(item.get('formula').value)"></i>
+          <i class="mg-r5 iconfont icon-cuowu font-size12 color-red" *ngIf="!formTemplateService.isFormula(item.get('formula').value)"></i>
+          <ng-container *ngFor="let mula of item.get('formulaArr').value;let i = index">
+            {{mula.label}}
+          </ng-container>
+        </div>
+        <span class="color-bbb font-size12" *ngIf="!isFormula">点击“公式栏”进行编辑公式</span>
+        <span class="color-bbb font-size12" *ngIf="isFormula">公式编辑完成后再次点击“公示栏”完成编辑</span>
+        <div class="dis-table mg-t20 cl" style="width:266px" *ngIf="isFormula">
+
+          <div>模板常数</div>
+          <div class="temp-jsgs cl">
+            <ng-container *ngFor="let item of numbers">
+              <span *ngIf="item.type=='Number' || item.type=='SingleChoose'" (click)="formulaChange('object',item)">
+                <i class="iconfont icon-shuzi" *ngIf="item.type=='Number'" nzTitle="控件类型: 数值" nzPlacement="topLeft"
+                  nz-tooltip></i>
+                <i class="iconfont icon-mg-radio2" *ngIf="item.type=='SingleChoose'" nzTitle="控件类型: 单选" nzPlacement="topLeft"
+                  nz-tooltip></i>
+                {{item.name}}
+              </span>
+            </ng-container>
+            <input style="width:80px;" type="text" class="form_input" (blur)="$event.target.value = ''" (keyup)="formulaChange('import',$event.target.value)" placeholder="请输入">
+          </div>
+
+          <div class="pd-t20">运算符</div>
+          <div class="temp-jsgs cl">
+            <span (click)="formulaChange('operator','+')">＋</span>
+            <span (click)="formulaChange('operator','-')">－</span>
+            <span (click)="formulaChange('operator','*')">*</span>
+            <span (click)="formulaChange('operator','/')">/</span>
+            <span (click)="formulaChange('operator','(')">(</span>
+            <span (click)="formulaChange('operator',')')">)</span>
+
+            <span (click)="formulaChange('operator','=')">=</span>
+            <span (click)="formulaChange('operator','≠')">≠</span>
+            <span (click)="formulaChange('operator','<')"><</span>
+            <span (click)="formulaChange('operator','≤')">≤</span>
+            <span (click)="formulaChange('operator','>')">></span>
+            <span (click)="formulaChange('operator','≥')">≥</span>
+
+            <span (click)="formulaChange('operator','IF')" nzTitle="条件 : IF(常数)" nzPlacement="topLeft" nz-tooltip>IF</span>
+            <span (click)="formulaChange('operator','SUM')" nzTitle="求和 : SUM(常数)" nzPlacement="topLeft" nz-tooltip>SUM</span>
+            <span (click)="formulaChange('operator','MAX')" nzTitle="最大值 : MAX(常数)" nzPlacement="topLeft" nz-tooltip>MAX</span>
+            <span (click)="formulaChange('operator','MIN')" nzTitle="最小值 : MIN(常数)" nzPlacement="topLeft" nz-tooltip>MIN</span>
+            <span (click)="formulaChange('operator','COUNT')" nzTitle="统计 : COUNT(常数)" nzPlacement="topLeft" nz-tooltip>COUNT</span>
+            <span (click)="formulaChange('operator','AVERAGE')" nzTitle="平均值 : AVERAGE(常数)" nzPlacement="topLeft"
+              nz-tooltip>AVERAGE</span>
+          </div>
+
+          <div class="pd-t20">固定常数</div>
+          <div class="temp-jsgs cl">
+            <span (click)="formulaChange('constant','1')">1</span>
+            <span (click)="formulaChange('constant','2')">2</span>
+            <span (click)="formulaChange('constant','3')">3</span>
+            <span (click)="formulaChange('constant','4')">4</span>
+            <span (click)="formulaChange('constant','5')">5</span>
+            <span (click)="formulaChange('constant','6')">6</span>
+            <span (click)="formulaChange('constant','7')">7</span>
+            <span (click)="formulaChange('constant','8')">8</span>
+            <span (click)="formulaChange('constant','9')">9</span>
+            <span (click)="formulaChange('constant','0')">0</span>
+            <span (click)="cleanFormula(0)" nzTitle="清除所有" nzPlacement="topLeft" nz-tooltip>AC</span>
+            <span (click)="cleanFormula(1)" nzTitle="清除当前一步" nzPlacement="topLeft" nz-tooltip>C</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

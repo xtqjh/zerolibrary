@@ -1,0 +1,180 @@
+<ng-container *ngIf="item">
+  <form [formGroup]="item">
+    <div class="form-edit_item">
+      <div class="form-edit_item_left">
+        <span class="font-size14">控件名称</span>
+      </div>
+      <div class="form-edit_item_right">
+        <input type="text" class="form_input" formControlName="name">
+      </div>
+    </div>
+
+    <ng-container *ngIf="parameter.rangeExternal">
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">控件别名</span>
+        </div>
+        <div class="form-edit_item_right">
+          <input type="text" class="form_input" formControlName="alias" placeholder="别名">
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="item.get('type').value!='Group' && item.get('type').value!='GroupSwitch' && item.get('type').value!='GroupSuite'">
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">控件说明</span>
+        </div>
+        <div class="form-edit_item_right">
+          <textarea class="form_textarea temp-form-textarea" formControlName="placeholder"></textarea>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="item.get('type').value=='Group'">
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">循环添加</span>
+        </div>
+        <div class="form-edit_item_right">
+          <nz-switch [nzSize]="'small'" formControlName="enableRepeat" class="dis-inline-block "></nz-switch>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="item.get('type').value=='DateRange'">
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">是否显示</span>
+        </div>
+        <div class="form-edit_item_right">
+          <nz-switch [nzSize]="'small'" formControlName="showDayCount" class="dis-inline-block "></nz-switch>
+        </div>
+      </div>
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">开始名称</span>
+        </div>
+        <div class="form-edit_item_right">
+          <input type="text" class="form_input" formControlName="startName" placeholder="开始时间显示名称">
+        </div>
+      </div>
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">结束名称</span>
+        </div>
+        <div class="form-edit_item_right">
+          <input type="text" class="form_input" formControlName="endName" placeholder="结束时间显示名称">
+        </div>
+      </div>
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">天数名称</span>
+        </div>
+        <div class="form-edit_item_right">
+          <input type="text" class="form_input" formControlName="countName" placeholder="显示天数的名称">
+        </div>
+      </div>
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">单位等级</span>
+        </div>
+        <div class="form-edit_item_right">
+          <select class="form_select" formControlName="level">
+            <option value="1">年</option>
+            <option value="2">月</option>
+            <option value="3">日</option>
+            <option value="4">半天</option>
+            <option value="5">时</option>
+            <option value="7">分</option>
+            <option value="8">秒</option>
+          </select>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="item.get('type').value=='Geography'">
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">GPS</span>
+        </div>
+        <div class="form-edit_item_right">
+          <nz-switch [nzSize]="'small'" formControlName="onlyGps" class="dis-inline-block "></nz-switch>
+          <content class="font-size14 color-888 mg-l10">是否只允许启用gps定位当前位置</content>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="item.get('type').value=='Area'">
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">等级</span>
+        </div>
+        <div class="form-edit_item_right">
+          <select class="form_select" formControlName="level">
+            <option value="1">省</option>
+            <option value="2">市</option>
+            <option value="3">区</option>
+            <option value="4">街道</option>
+          </select>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="item.get('type').value=='Product'">
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">数量</span>
+        </div>
+        <div class="form-edit_item_right">
+          <input type="number" class="form_input" formControlName="number" placeholder="允许产品选择的个数,默认为1">
+        </div>
+      </div>
+      <div class="form-edit_item">
+        <div class="form-edit_item_left">
+          <span class="font-size14">扫描</span>
+        </div>
+        <div class="form-edit_item_right">
+          <nz-switch [nzSize]="'small'" formControlName="enableScan" class="dis-inline-block "></nz-switch>
+          <content class="font-size14 color-888 mg-l10">是否允许扫描条形码</content>
+        </div>
+      </div>
+    </ng-container>
+
+  </form>
+
+  <ng-container *ngIf="item.get('type').value=='File'">
+    <zc-form-control-parameter-file [item]="item"></zc-form-control-parameter-file>
+  </ng-container>
+
+  <ng-container *ngIf="item.get('type').value=='GroupSwitch'">
+    <zc-form-control-parameter-switch [item]="item"></zc-form-control-parameter-switch>
+  </ng-container>
+
+  <ng-container *ngIf="item.get('type').value=='SingleChoose' || item.get('type').value=='Choose'">
+    <zc-form-control-parameter-choose [item]="item"></zc-form-control-parameter-choose>
+  </ng-container>
+
+  <ng-container *ngIf="item.get('type').value=='Formula'">
+    <zc-form-control-parameter-formula [item]="item" [numbers]="control"></zc-form-control-parameter-formula>
+  </ng-container>
+
+  <ng-container *ngIf="item.get('type').value!='Group' && item.get('type').value!='Formula' && item.get('type').value!='GroupSwitch' && item.get('type').value!='GroupSuite'">
+    <div class="form-edit_item">
+      <div class="form-edit_item_left">
+        <span class="font-size14">其他</span>
+      </div>
+      <div class="form-edit_item_right">
+        <ng-container *ngFor="let vali of validators;let i = index">
+          <label>
+            <input type="checkbox" [(ngModel)]="vali.select" (ngModelChange)="validatorsChange(vali)">
+            <span>{{vali.label}}</span>
+          </label>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+
+  <zc-form-control-parameter-validators [item]="item" [control]="control" [itemChange]="item.value"></zc-form-control-parameter-validators>
+
+</ng-container>

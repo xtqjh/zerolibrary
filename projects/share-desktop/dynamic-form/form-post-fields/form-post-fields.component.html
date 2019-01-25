@@ -1,0 +1,22 @@
+<ng-container *ngFor="let field of fields;index as i" [ngSwitch]="field.type">
+  <h3 *ngIf="field.name">{{field.name}}</h3>
+
+  <ng-container *ngFor="let f of field['fields'];let k = index" [ngSwitch]="f.type">
+
+    <zc-field-date *ngSwitchCase="'Date'" [field]="f" (valueChange)="onValueChanges($event,i)">
+    </zc-field-date>
+
+    <zc-field-text-area *ngSwitchCase="'Multi'" [field]="f" (valueChange)="onValueChanges($event,i)">
+    </zc-field-text-area>
+
+    <zc-field-choose *ngSwitchCase="'Choose'" [field]="f" (valueChange)="onValueChanges($event,i)">
+    </zc-field-choose>
+
+    <zc-field-choose *ngSwitchCase="'SingleChoose'" [field]="f" (valueChange)="onValueChanges($event,i)">
+    </zc-field-choose>
+
+    <zc-field-text *ngSwitchDefault="" [field]="f" (valueChange)="onValueChanges($event,i)"></zc-field-text>
+
+  </ng-container>
+
+</ng-container>

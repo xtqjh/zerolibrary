@@ -10,4 +10,4 @@
 `npm publish` 
 
 ## 删除发布的包
-`npm unpublish "share-desktop" --force` 
+`npm unpublish ng-share-desktop@0.0.0-beta.0.40 --force`

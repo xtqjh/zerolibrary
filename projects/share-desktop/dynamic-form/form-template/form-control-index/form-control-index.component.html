@@ -1,0 +1,38 @@
+<div class="temp-list-wk">
+
+  <ng-container *ngFor="let field of fields.value;let i = index" [ngSwitch]="true">
+
+    <!-- 文件 -->
+    <ng-container *ngSwitchCase="field?.type=='File' || field?.type=='Image'">
+      <zc-form-control-file [item]="field" (resRemove)="setItemRemove($event,i)" (click)="setItemSelect(field,i)"></zc-form-control-file>
+    </ng-container>
+
+    <!-- 明细 -->
+    <ng-container *ngSwitchCase="field?.type=='Group'">
+      <zc-form-control-detailed [fields]="fields" [item]="fields.at(i)" (resRemove)="setItemRemove($event,i)"
+        (fieldSelectChange)="fieldSelectChange.emit($event)" (click)="setItemSelect(field,i)"></zc-form-control-detailed>
+    </ng-container>
+
+    <!-- 分支 -->
+    <ng-container *ngSwitchCase="field?.type=='GroupSwitch'">
+      <zc-form-control-switch [fields]="fields" [item]="fields.at(i)" (resRemove)="setItemRemove($event,i)"
+        (fieldSelectChange)="fieldSelectChange.emit($event)" (click)="setItemSelect(field,i)"></zc-form-control-switch>
+    </ng-container>
+
+    <!-- 套件 -->
+    <ng-container *ngSwitchCase="field?.type=='GroupSuite'">
+      <zc-form-control-suite [fields]="fields" [item]="fields.at(i)" (resRemove)="setItemRemove($event,i)"
+        (fieldSelectChange)="fieldSelectChange.emit($event)" (click)="setItemSelect(field,i)"></zc-form-control-suite>
+    </ng-container>
+
+    <!-- 选择 -->
+    <ng-container *ngSwitchCase="field?.type=='SingleChoose' || field?.type=='Choose' || field?.type=='Area' || field?.type=='Product' || field?.type=='Customer' || field?.type=='Formula' || field?.type=='Boolean'">
+      <zc-form-control-select [item]="field" (resRemove)="setItemRemove($event,i)" (click)="setItemSelect(field,i)"></zc-form-control-select>
+    </ng-container>
+
+    <ng-container *ngSwitchDefault>
+      <zc-form-control-input [item]="field" (resRemove)="setItemRemove($event,i)" (click)="setItemSelect(field,i)"></zc-form-control-input>
+    </ng-container>
+
+  </ng-container>
+</div>
