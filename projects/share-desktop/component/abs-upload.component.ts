@@ -11,16 +11,17 @@ import { Result, ConfigService } from '../core/service/config.service';
 
 export abstract class AbsUploadComponet {
 
-  private http: HttpClient;
-  private config: ConfigService;
-
-  private fileapi = `${this.config.url.fileapi}`;
-
   private _headers = new HttpHeaders()
     .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
     .set('X-Requested-With', 'XMLHttpRequest');
 
-  constructor() { }
+  private config: ConfigService = new ConfigService();
+
+  private fileapi = `${this.config.url.fileapi}`;
+
+  constructor(
+    private http: HttpClient
+  ) { }
 
   private buildPostData(args: UploadXHRArgs) {
     return this.buildSing$()

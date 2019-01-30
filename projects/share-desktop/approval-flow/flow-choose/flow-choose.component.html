@@ -1,0 +1,42 @@
+<div class="zdng-form-list">
+  <div class="zdng-form-list-left ">
+    <small class="zdng-form-must">*</small>
+    <span class="color-888">审批人</span>
+  </div>
+  <div class="zdng-form-list-right">
+    <div class="task-user-wk">
+      <div class="task-user-list" *ngFor="let approverItem of itemFlow?.approverAudits; index as i">
+        <div class="task-user-list-img">
+          <img [src]="'http://saasapidev.f-plm.com/public/user/avatar?postCode=' + approverItem.postCode">
+          <span class="zd-close" *ngIf="isVisibleApprover">
+            <i nz-icon type="close-circle" theme="outline" title="删除" (click)="deleteProduct('approverAudits',i)"></i>
+          </span>
+        </div>
+        <div class="task-user-list-name"><span [title]="approverItem.name">{{approverItem.name}}</span></div>
+      </div>
+      <div class="task-user-list" *ngIf="isVisibleApprover">
+        <div class="task-user-list-img" style="margin-left:13px;" (click)="addApprover()">
+          <span>
+            <i nz-icon type="plus-square" theme="outline" style="font-size: 36px; color: #bbb;"></i>
+          </span>
+        </div>
+      </div>
+      <span class="color-red" style="line-height: 36px" *ngIf="itemFlow.approverAudits.length==0">请添加审批人</span>
+    </div>
+  </div>
+</div>
+<div class="zdng-form-list" *ngIf="itemFlow?.ccStaff.length>0">
+  <div class="zdng-form-list-left ">
+    <span class="color-888">抄送人</span>
+  </div>
+  <div class="zdng-form-list-right">
+    <div class="task-user-wk">
+      <div class="task-user-list" *ngFor="let cCItem of itemFlow?.ccStaff; index as i">
+        <div class="task-user-list-img">
+          <img [src]="'http://saasapidev.f-plm.com/public/user/avatar?postCode=' + cCItem.postCode">
+        </div>
+        <div class="task-user-list-name"><span [title]="cCItem.name">{{cCItem.name}}</span></div>
+      </div>
+    </div>
+  </div>
+</div>

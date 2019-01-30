@@ -27,9 +27,17 @@ export class AppComponent extends MalihuScrollbarComponent {
 
   viewRanges = [];
 
-  flowId = 3081;
+  flowId = 3329;
+
+  flowInstanceUuid = '2c931be5673044e70167355223330037';
 
   scrollbar$ = ['#container'];
+
+  address = [
+    { code: '510', title: '四川省' },
+    { code: '510100000000', title: '成都市' },
+    { code: '510106000000', title: '金牛区' }
+  ];
 
   constructor(
     changeDetectorRef$: ChangeDetectorRef,
@@ -39,7 +47,7 @@ export class AppComponent extends MalihuScrollbarComponent {
   }
 
   public retData(event) {
-    console.log(event);
+    // console.log(event);
   }
 
 }

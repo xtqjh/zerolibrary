@@ -5,73 +5,23 @@
 
   <!-- <zc-map-baidu-staticimage [longitude]="map.longitude" [latitude]="map.latitude" [width]="250" [height]="130" [zoom]="14"></zc-map-baidu-staticimage> -->
 
-  <zc-map-baidu-position [(isVisible)]="isVisible" (retPlacePlace)="retData($event)"></zc-map-baidu-position>
+  <!-- <zc-map-baidu-position [(isVisible)]="isVisible" (retPlacePlace)="retData($event)"></zc-map-baidu-position> -->
 
   <!-- <button (click)="isVisibleCro=!isVisibleCro">isVisibleCro</button>
   <zc-image-cropper [(isVisible)]="isVisibleCro" [resizeToWidth]="icWidht" [aspectRatio]="icRatio" [folderName]="folderName"
     (retImage)="retData($event)">
   </zc-image-cropper> -->
 
-  <!-- <zc-address-linkage (addressChange)="retData($event)"></zc-address-linkage> -->
+  <zc-address-linkage [ngModel]="address" (ngModelChange)="retData($event)"></zc-address-linkage>
 
   <!-- <zc-organization-structure [(isVisible)]="isVisible" [beChosen]="viewRanges" (result)="retData($event)"></zc-organization-structure> -->
 
   <!-- <zc-flow-operation [flowId]="flowId"></zc-flow-operation> -->
 
-  <!-- <div [zcLoading]="isVisible"></div> -->
+  <zc-flow-choose name="flowId" [ngModel]="flowId" (ngModelChange)="retData($event)"></zc-flow-choose>
 
-  <div style="height: calc(100vh - 400px)" id="container">
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt reiciendis eveniet velit,
-      quos perferendis optio odit ex commodi dignissimos maxime ad eligendi. Excepturi sunt nostrum eaque, ut
-      consequatur eum?</p>
-  </div>
+  <zc-flow-details [ngModel]="flowInstanceUuid"></zc-flow-details>
+
+  <!-- <div [zcLoading]="isVisible"></div> -->
 
 </div>

@@ -23,6 +23,10 @@ export class ApprovalFlowService {
 
   }
 
+  /**
+   * 流程审批人员
+   * @param flowId flowId
+   */
   loadFlow$(flowId: number) {
     return this.http.get(`${this.custom}oa/flow/${flowId}/config?withStaff=true`, { headers: this._headers })
       .pipe(
@@ -34,5 +38,26 @@ export class ApprovalFlowService {
       );
   }
 
+  /**
+   * 获取审批详情
+   * @param flowInstanceUuid flowInstanceUuid
+   */
+  getFlowDetail(flowInstanceUuid: string) {
+    return this.http.get(`${this.custom}oa/flow-instance/${flowInstanceUuid}`, { headers: this._headers })
+      .pipe(
+        filter((v: Result<any>) => {
+          v.errCode === 0 ? console.log(v) : this.msg.error(v.msg || 'api error');
+          return v.errCode === 0;
+        }),
+        map((v: Result<any>) => v.content)
+      );
+  }
 
+
+}
+
+export enum ApprovalStatus {
+  InAudit = '审批中',
+  Audited = '已同意',
+  Reject = '驳回'
 }

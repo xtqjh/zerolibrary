@@ -1,8 +1,8 @@
 /**
  * @作者: zc
  * @时间: 2019-01-08 11:38:25
- * @描述: 流程审批选择
- * @描述: <zc-flow-operation [flowId]="flowId"></zc-flow-operation>
+ * @描述: 流程审批选择  &&  请使用 zc-flow-choose
+ * @使用: <zc-flow-operation [flowId]="flowId"></zc-flow-operation>
  */
 import { Component, Input, ChangeDetectionStrategy, NgZone, ChangeDetectorRef } from '@angular/core';
 import { from } from 'rxjs';
