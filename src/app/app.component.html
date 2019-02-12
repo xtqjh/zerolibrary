@@ -12,15 +12,28 @@
     (retImage)="retData($event)">
   </zc-image-cropper> -->
 
-  <zc-address-linkage [ngModel]="address" (ngModelChange)="retData($event)"></zc-address-linkage>
+  <!-- <zc-address-linkage [ngModel]="address" (ngModelChange)="retData($event)"></zc-address-linkage> -->
+
+  <!-- <form [formGroup]="dynForm" (ngSubmit)="handleOk()">
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="input">
+      <nz-form-explain *ngIf="dynForm.get('input').dirty && dynForm.get('input').errors">The input is not valid input!</nz-form-explain>
+    </nz-form-control>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <zc-address-linkage name="address" formControlName="address" (ngModelChange)="retData($event)"></zc-address-linkage>
+      <nz-form-explain *ngIf="dynForm.get('address').dirty && dynForm.get('address').errors">The input is not valid address!</nz-form-explain>
+    </nz-form-control>
+  </form> -->
 
   <!-- <zc-organization-structure [(isVisible)]="isVisible" [beChosen]="viewRanges" (result)="retData($event)"></zc-organization-structure> -->
 
   <!-- <zc-flow-operation [flowId]="flowId"></zc-flow-operation> -->
 
-  <zc-flow-choose name="flowId" [ngModel]="flowId" (ngModelChange)="retData($event)"></zc-flow-choose>
+  <form [formGroup]="dynForm" (ngSubmit)="handleOk()">
+    <zc-flow-choose name="flowId" formControlName="flowId" (ngModelChange)="retData($event)"></zc-flow-choose>
+  </form>
 
-  <zc-flow-details [ngModel]="flowInstanceUuid"></zc-flow-details>
+  <!-- <zc-flow-details [ngModel]="flowInstanceUuid"></zc-flow-details> -->
 
   <!-- <div [zcLoading]="isVisible"></div> -->
 

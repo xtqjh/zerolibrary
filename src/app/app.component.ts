@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { MalihuScrollbarComponent } from 'ng-share-desktop';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -39,15 +40,39 @@ export class AppComponent extends MalihuScrollbarComponent {
     { code: '510106000000', title: '金牛区' }
   ];
 
+  dynForm: FormGroup = this.fb.group({
+    input: [null, Validators.required],
+    // address: [
+    //   [
+    //     { code: '510', title: '四川省' },
+    //     // { code: '510100000000', title: '成都市' },
+    //     // { code: '510106000000', title: '金牛区' }
+    //   ], [Validators.required]
+    // ]
+    address: [this.fb.array([]), [Validators.required]],
+    flowId: 3329
+  });
+
   constructor(
     changeDetectorRef$: ChangeDetectorRef,
-    mScrollbarService$: MalihuScrollbarService
+    mScrollbarService$: MalihuScrollbarService,
+    private fb: FormBuilder
   ) {
     super(changeDetectorRef$, mScrollbarService$);
   }
 
   public retData(event) {
-    // console.log(event);
+    console.log(event);
+  }
+
+  public handleOk() {
+    for (const i in this.dynForm.controls) {
+      if (this.dynForm.controls.hasOwnProperty(i)) {
+        this.dynForm.controls[i].markAsDirty();
+        this.dynForm.controls[i].updateValueAndValidity();
+      }
+    }
+    console.log(this.dynForm.value);
   }
 
 }

@@ -10,6 +10,7 @@ import { ApprovalFlowModule } from './approval-flow/approval-flow.module';
 import { ProductModule } from './product/product.module';
 import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
 
+export * from './animations';
 export * from './core';
 export * from './component';
 

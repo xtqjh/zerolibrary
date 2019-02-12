@@ -1,55 +1,53 @@
-<div>
-  <div class="zc-linkage" [ngClass]="{'select':isSelect}" *ngIf="mode=='choose'">
-    <span id="zc-input" *ngIf="selectList.length==0">选择</span>
-    <span id="zc-linkage-picker-label">
-      <ng-container *ngFor="let item of selectList;index as i">
-        {{i>0?' / ':''}} {{item.title}}
-      </ng-container>
-    </span>
-  </div>
-  <div class="zc-linkage" [ngClass]="{'select':isSelect}" *ngIf="mode=='select'">
-    <input id="zc-input" nz-input class="w250" readonly placeholder="{{selectList.length==0?'请选择':''}}">
-    <i class="zc-linkage-picker-clear anticon" [ngClass]="{'active':isSelect}"></i>
-    <span id="zc-linkage-picker-label" class="zc-linkage-picker-label">
-      <ng-container *ngFor="let item of selectList;index as i">
-        {{i>0?' / ':''}} {{item.title}}
-      </ng-container>
-    </span>
-  </div>
-  <div class="zc-menus" *ngIf="isSelect">
-    <ng-container *ngIf="provinceList.length>0">
-      <div class="zc-list-menu">
-        <ul>
-          <ng-container *ngFor="let item of provinceList">
-            <li class="zc-list-menu-item" [ngClass]="{'active':item.select}" (click)="provinceChange(item)">
-              {{item.title}}
-              <i nz-icon type="loading" theme="outline" class="fr iconfont" *ngIf="cityIsLoading && item.select"></i>
-            </li>
-          </ng-container>
-        </ul>
-      </div>
+<div class="zc-linkage" [ngClass]="{'select':isSelect}" *ngIf="mode=='choose'">
+  <span id="zc-input" *ngIf="selectList.length==0">选择</span>
+  <span id="zc-linkage-picker-label">
+    <ng-container *ngFor="let item of selectList;index as i">
+      {{i>0?' / ':''}} {{item.title}}
     </ng-container>
-    <ng-container *ngIf="cityList.length>0">
-      <div class="zc-list-menu">
-        <ul>
-          <ng-container *ngFor="let item of cityList">
-            <li class="zc-list-menu-item" [ngClass]="{'active':item.select}" (click)="cityChange(item)">
-              {{item.title}}
-              <i nz-icon type="loading" theme="outline" class="fr iconfont" *ngIf="areaIsLoading && item.select"></i>
-            </li>
-          </ng-container>
-        </ul>
-      </div>
+  </span>
+</div>
+<div class="zc-linkage" [ngClass]="{'select':isSelect}" *ngIf="mode=='select'">
+  <input id="zc-input" nz-input class="w250" readonly placeholder="{{selectList.length==0?'请选择':''}}">
+  <i class="zc-linkage-picker-clear anticon" [ngClass]="{'active':isSelect}"></i>
+  <span id="zc-linkage-picker-label" class="zc-linkage-picker-label">
+    <ng-container *ngFor="let item of selectList;index as i">
+      {{i>0?' / ':''}} {{item.title}}
     </ng-container>
-    <ng-container *ngIf="areaList.length>0">
-      <div class="zc-list-menu">
-        <ul>
-          <ng-container *ngFor="let item of areaList">
-            <li class="zc-list-menu-item" [ngClass]="{'active':item.select}" (click)="areaChange(item)">{{item.title}}</li>
-          </ng-container>
-        </ul>
-      </div>
-    </ng-container>
-  </div>
+  </span>
+</div>
+<div class="zc-menus" *ngIf="isSelect">
+  <ng-container *ngIf="provinceList.length>0">
+    <div class="zc-list-menu">
+      <ul>
+        <ng-container *ngFor="let item of provinceList">
+          <li class="zc-list-menu-item" [ngClass]="{'active':item.select}" (click)="provinceChange(item)">
+            {{item.title}}
+            <i nz-icon type="loading" theme="outline" class="fr iconfont" *ngIf="cityIsLoading && item.select"></i>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="cityList.length>0">
+    <div class="zc-list-menu">
+      <ul>
+        <ng-container *ngFor="let item of cityList">
+          <li class="zc-list-menu-item" [ngClass]="{'active':item.select}" (click)="cityChange(item)">
+            {{item.title}}
+            <i nz-icon type="loading" theme="outline" class="fr iconfont" *ngIf="areaIsLoading && item.select"></i>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="areaList.length>0">
+    <div class="zc-list-menu">
+      <ul>
+        <ng-container *ngFor="let item of areaList">
+          <li class="zc-list-menu-item" [ngClass]="{'active':item.select}" (click)="areaChange(item)">{{item.title}}</li>
+        </ng-container>
+      </ul>
+    </div>
+  </ng-container>
 </div>
 <div class="zc-overlay-backdrop" id="zc-overlay-backdrop" *ngIf="isSelect"></div>

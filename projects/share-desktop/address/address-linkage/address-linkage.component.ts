@@ -4,18 +4,25 @@
  * @描述: 三级联动选择
  * @使用: <zc-address-linkage [ngModel]="address" (ngModelChange)="retData($event)"></zc-address-linkage>
  */
-import { Component, HostListener, Output, EventEmitter, Input, ChangeDetectionStrategy, ViewEncapsulation, Injectable, ChangeDetectorRef, forwardRef } from '@angular/core';
+import { Component, HostListener, Output, EventEmitter, Input, ChangeDetectionStrategy, ViewEncapsulation, Injectable, ChangeDetectorRef, forwardRef, Renderer, ElementRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, NG_VALIDATORS, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { filter, map } from 'rxjs/operators';
-import { ConfigService } from '../../core/service/config.service';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { Result } from 'share-desktop/core';
 import { BehaviorSubject } from 'rxjs';
+import { ConfigService } from '../../core/service/config.service';
+import { Result } from '../../core';
 
 export interface InitLinkage {
   code: string;
   title: string;
 }
+
+// export const validateValidator: ValidatorFn = (control: AbstractControl):
+//   ValidationErrors => {
+//   console.log(control.value);
+//   return (control.value.length === 0) ?
+//     { 'rangeError': { current: control.value, max: 10, min: 0 } } : null;
+// };
 
 @Component({
   selector: 'zc-address-linkage',
@@ -23,11 +30,17 @@ export interface InitLinkage {
   styleUrls: ['./address-linkage.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // encapsulation: ViewEncapsulation.None
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => AddressLinkageComponent),
-    multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => AddressLinkageComponent),
+      multi: true
+    // }, {
+    //   provide: NG_VALIDATORS,
+    //   useValue: validateValidator,
+    //   multi: true
+    }
+  ]
 })
 export class AddressLinkageComponent implements ControlValueAccessor {
 
@@ -60,9 +73,9 @@ export class AddressLinkageComponent implements ControlValueAccessor {
     area: false
   };
 
-  onChange: (value: any) => void = () => null;
-
   constructor(
+    private _renderer: Renderer, // 注入Renderer对象
+    private _elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private http: HttpClient,
     private config: ConfigService
@@ -73,11 +86,13 @@ export class AddressLinkageComponent implements ControlValueAccessor {
 
   private markForCheck() {
     this.cdr.markForCheck();
-    console.log(this.selectList);
-    this.onChange(this.selectList);
+    // tslint:disable-next-line:no-unused-expression
+    this.onChange && this.onChange(this.selectList);
   }
 
+  // 将模型中的新值写入视图或DOM元素属性中
   writeValue(obj: InitLinkage[]): void {
+    this.selectList = obj;
     if (Array.isArray(obj) && obj.length > 0) {
       if (obj.length > 0) { this.initAddress.province = true; }
       if (obj.length > 1) { this.initAddress.city = true; }
@@ -111,12 +126,18 @@ export class AddressLinkageComponent implements ControlValueAccessor {
     }
   }
 
-  registerOnChange(fn: (_: any) => void): void {
-    this.onChange = fn;
-  }
+  onChange = (_: any) => { };
+  // 设置当控件接收到change事件后，调用的函数
+  registerOnChange(fn: any): void { this.onChange = fn; }
 
-  registerOnTouched(value: any) {
-    // console.log(value);
+  onTouched = () => { };
+  // 设置当控件接收到touched事件后，调用的函数
+  registerOnTouched(fn: () => void): void { this.onTouched = fn; }
+
+  // 设置控件的Disabled状态
+  setDisabledState(isDisabled: boolean): void {
+    this._renderer.setElementProperty(this._elementRef.nativeElement,
+      'disabled', isDisabled);
   }
 
   @HostListener('click', ['$event'])

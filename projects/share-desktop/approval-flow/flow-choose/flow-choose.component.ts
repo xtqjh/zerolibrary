@@ -5,7 +5,7 @@
  * @使用: <zc-flow-choose #flow name="flowId" [ngModel]="flowId"></zc-flow-choose>
  * @使用: @ViewChild('flow') flow;
  */
-import { Component, Input, ChangeDetectorRef, ChangeDetectionStrategy, forwardRef, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, ChangeDetectionStrategy, forwardRef, ViewEncapsulation, Renderer, ElementRef } from '@angular/core';
 import { ApprovalFlowService } from '../approval-flow.service';
 import { Employee, WindowsService } from 'jsw-electron-sdk';
 import { from } from 'rxjs';
@@ -37,9 +37,10 @@ export class FlowChooseComponent implements ControlValueAccessor {
   // 审批选择框
   public isVisibleApprover = false;
 
-  onChange: (value: any) => void = () => null;
 
   constructor(
+    private _renderer: Renderer, // 注入Renderer对象
+    private _elementRef: ElementRef,
     private approvalFlowService: ApprovalFlowService,
     private cdr: ChangeDetectorRef
   ) { }
@@ -54,12 +55,18 @@ export class FlowChooseComponent implements ControlValueAccessor {
     if (value) { this.getLoadFlow(value); }
   }
 
-  registerOnChange(fn: (_: any) => void): void {
-    this.onChange = fn;
-  }
+  onChange = (_: any) => { };
+  // 设置当控件接收到change事件后，调用的函数
+  registerOnChange(fn: any): void { this.onChange = fn; }
 
-  registerOnTouched(value: any) {
-    // console.log(value);
+  onTouched = () => { };
+  // 设置当控件接收到touched事件后，调用的函数
+  registerOnTouched(fn: () => void): void { this.onTouched = fn; }
+
+  // 设置控件的Disabled状态
+  setDisabledState(isDisabled: boolean): void {
+    this._renderer.setElementProperty(this._elementRef.nativeElement,
+      'disabled', isDisabled);
   }
 
   // 获取审批
