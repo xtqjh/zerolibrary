@@ -1,0 +1,10 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/share-mobile",
+  "lib": {
+    "entryFile": "ng-share-mobile.module.ts"
+  },
+  "whitelistedNonPeerDependencies": [
+    "."
+  ]
+}

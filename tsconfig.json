@@ -29,6 +29,12 @@
       ],
       "share-desktop/*": [
         "dist/share-desktop/*"
+      ],
+      "share-mobile": [
+        "dist/share-mobile"
+      ],
+      "share-mobile/*": [
+        "dist/share-mobile/*"
       ]
     }
   }

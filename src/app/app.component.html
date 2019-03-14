@@ -29,12 +29,18 @@
 
   <!-- <zc-flow-operation [flowId]="flowId"></zc-flow-operation> -->
 
-  <form [formGroup]="dynForm" (ngSubmit)="handleOk()">
+  <!-- <form [formGroup]="dynForm" (ngSubmit)="handleOk()">
     <zc-flow-choose name="flowId" formControlName="flowId" (ngModelChange)="retData($event)"></zc-flow-choose>
-  </form>
+  </form> -->
 
   <!-- <zc-flow-details [ngModel]="flowInstanceUuid"></zc-flow-details> -->
 
   <!-- <div [zcLoading]="isVisible"></div> -->
+
+  <ul>
+    <li *ngFor="let item of items | diff: [2, 4]">{{item}}</li>
+  </ul>
+
+  <input type="file" (change)="retData($event)">
 
 </div>

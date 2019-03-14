@@ -2,11 +2,14 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { MalihuScrollbarComponent } from 'ng-share-desktop';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AnalysisService, ObjectToArrayPipe, LeftTrimPipe } from 'projects/share-desktop/ng-share-desktop.module';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ObjectToArrayPipe, LeftTrimPipe]
 })
 export class AppComponent extends MalihuScrollbarComponent {
 
@@ -53,16 +56,38 @@ export class AppComponent extends MalihuScrollbarComponent {
     flowId: 3329
   });
 
+  flieExcel = null;
+
+  items = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   constructor(
     changeDetectorRef$: ChangeDetectorRef,
     mScrollbarService$: MalihuScrollbarService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private analysisService: AnalysisService,
+    private pipeA: LeftTrimPipe,
+    private pipeB: ObjectToArrayPipe
   ) {
     super(changeDetectorRef$, mScrollbarService$);
+
+    const resultA = this.pipeA.transform('   foo bar   ');
+    const resultB = this.pipeB.transform({ a: 'a', b: 'b' });
+
+
+    console.log(resultA, resultB);
   }
 
   public retData(event) {
     console.log(event);
+
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const file: File = fileList[0];
+
+      console.log(file);
+
+      this.analysisService.fileAnalysisExcel(file);
+    }
   }
 
   public handleOk() {
