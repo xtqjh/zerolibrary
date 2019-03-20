@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { MalihuScrollbarComponent } from 'ng-share-desktop';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AnalysisService, ObjectToArrayPipe, LeftTrimPipe } from 'projects/share-desktop/ng-share-desktop.module';
+import { AnalysisService, ObjectToArrayPipe, LeftTrimPipe, isClone } from 'projects/share-desktop/ng-share-desktop.module';
 
 
 @Component({
@@ -73,6 +73,7 @@ export class AppComponent extends MalihuScrollbarComponent {
     const resultA = this.pipeA.transform('   foo bar   ');
     const resultB = this.pipeB.transform({ a: 'a', b: 'b' });
 
+    console.log(isClone({ a: '1', b: '2' }));
 
     console.log(resultA, resultB);
   }
