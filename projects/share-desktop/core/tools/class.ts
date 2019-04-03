@@ -43,3 +43,13 @@ export function getRandomColor() {
   // tslint:disable-next-line:no-bitwise
   return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6);
 }
+
+/**
+ * 获取元素指定样式值
+ * @param elt 用于获取计算样式的Element
+ * @param styleName 样式名称
+ */
+export function getComputedStyle(elt: Element, styleName: string) {
+  const cs = window.getComputedStyle && window.getComputedStyle(elt, null);
+  return cs[styleName];
+}

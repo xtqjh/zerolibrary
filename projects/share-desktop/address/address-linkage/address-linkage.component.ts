@@ -17,28 +17,16 @@ export interface InitLinkage {
   title: string;
 }
 
-// export const validateValidator: ValidatorFn = (control: AbstractControl):
-//   ValidationErrors => {
-//   console.log(control.value);
-//   return (control.value.length === 0) ?
-//     { 'rangeError': { current: control.value, max: 10, min: 0 } } : null;
-// };
-
 @Component({
   selector: 'zc-address-linkage',
   templateUrl: './address-linkage.component.html',
   styleUrls: ['./address-linkage.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // encapsulation: ViewEncapsulation.None
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => AddressLinkageComponent),
       multi: true
-    // }, {
-    //   provide: NG_VALIDATORS,
-    //   useValue: validateValidator,
-    //   multi: true
     }
   ]
 })
@@ -163,7 +151,7 @@ export class AddressLinkageComponent implements ControlValueAccessor {
     const _headers = new HttpHeaders()
       .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
       .set('X-Requested-With', 'XMLHttpRequest');
-    this.http.get(_url, { headers: _headers }).pipe(
+    this.http.get<Result<any>>(_url, { headers: _headers }).pipe(
       filter((v: Result<any>) => v.errCode === 0),
       map((v: Result<any>) => v.content)
     ).subscribe(v => {

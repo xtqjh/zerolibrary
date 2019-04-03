@@ -3,6 +3,7 @@ import { MalihuScrollbarComponent } from 'ng-share-desktop';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AnalysisService, ObjectToArrayPipe, LeftTrimPipe, isClone } from 'projects/share-desktop/ng-share-desktop.module';
+import { xlsx } from 'node-xlsx';
 
 
 @Component({
@@ -84,10 +85,12 @@ export class AppComponent extends MalihuScrollbarComponent {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
-
       console.log(file);
 
       this.analysisService.fileAnalysisExcel(file);
+
+      const workSheetsFromBuffer = xlsx.parse(file['path']);
+      console.log(workSheetsFromBuffer);
     }
   }
 

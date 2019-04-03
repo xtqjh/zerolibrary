@@ -95,7 +95,7 @@ export class MessagesService {
     const str = `
       .zc-overlay-container-messages{position: fixed;z-index: 1010;width: 100%;top: 100px;left: 0;pointer-events: none;text-align: center;}
       .zc-message-item{position:relative;padding:8px 16px 8px 46px;margin:3px 0;border-radius:4px;
-        box-shadow:0 2px 8px rgba(0,0,0,.2);background:#fff;display:inline-block;pointer-events:all;}
+        box-shadow:0 2px 8px rgba(0,0,0,.2);background:#fff;display:table;pointer-events:all;display:table;margin:0 auto;}
       .zc-message-item:before{content:" ";position:absolute;left:18px;width:18px;
         height:18px;background-color:#666;display:inline-block;border-radius:50%;}
       .zc-message-item.info:before{background-color:#636bb4;}

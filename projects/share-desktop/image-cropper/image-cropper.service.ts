@@ -60,7 +60,7 @@ export class ImageCropperService {
       .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
       .set('X-Requested-With', 'XMLHttpRequest');
     const url = `${this.url$}file-disk/signature.json`;
-    return this.http.get(url, { headers: _headers }).pipe(
+    return this.http.get<Result<any>>(url, { headers: _headers }).pipe(
       filter((v: Result<any>) => v.errCode === 0),
       map((v: Result<any>) => v.content)
     );

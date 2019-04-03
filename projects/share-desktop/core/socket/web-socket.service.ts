@@ -11,9 +11,9 @@ export class WebSocketService {
   /**
    * 根据传入的url创建一个websocket协议
    */
-  createObservableScoket(url: string): Observable<any> {
+  createObservableScoket(url: string, data?: string | [string]): Observable<any> {
     // 创建websocket服务
-    this.ws = new WebSocket(url);
+    this.ws = new WebSocket(url, data);
     // this.ws.onopen = event => console.log(event);
     return new Observable(observer => {
       // 返回成功时执行的方法
@@ -35,7 +35,7 @@ export class WebSocketService {
   /**
    * 发送消息
    */
-  sendMessage(msg: string) {
+  sendMessage(msg: any) {
     this.ws.send(msg);
   }
 }
