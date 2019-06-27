@@ -6,6 +6,8 @@
 import { OnDestroy, AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 
+export const themeOptions: MCustomScrollbar.CustomScrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
+
 export abstract class MalihuScrollbarComponent implements AfterViewInit, OnDestroy {
 
   timer = null;
@@ -48,7 +50,7 @@ export abstract class MalihuScrollbarComponent implements AfterViewInit, OnDestr
     console.log(this.scrollbar$);
     this.scrollbar$.forEach(ele => {
       this.mScrollbarService$.initScrollbar(ele, {
-        axis: 'y', theme: 'minimal-dark', callbacks: {
+        ...themeOptions, callbacks: {
           onTotalScrollOffset: 200,
           onTotalScroll: () => {
             this.scrolled();

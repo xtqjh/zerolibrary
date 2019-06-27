@@ -1,3 +1,3 @@
 
 export { AbsUploadComponet } from './abs-upload.component';
-export { MalihuScrollbarComponent } from './scrollbar.component';
+export { themeOptions, MalihuScrollbarComponent } from './scrollbar.component';

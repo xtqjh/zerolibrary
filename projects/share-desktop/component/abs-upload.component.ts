@@ -99,7 +99,6 @@ export abstract class AbsUploadComponet {
           }
           args.onProgress(event, args.file);
         } else if (event instanceof HttpResponse) {
-          console.log(event);
           args.onSuccess(event.body, args.file, event);
         }
       }, (err) => {

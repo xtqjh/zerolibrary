@@ -5,6 +5,7 @@ export { ObjectToArrayPipe } from './object-to-array.pipe';
 export { SafeHtmlPipe } from './safe-html.pipe';
 export { DigitUppercasePipe } from './digit-uppercase.pipe';
 export { ConvertStatusPipe } from './convert-status.pipe';
+export { ChannelColorPipe } from './channel-color.pipe';
 export { PipeModule } from './pipe.module';
 
 

@@ -126,3 +126,31 @@ export function objectFormatKey(obj) {
   }
   return JSON.parse($jsonStr);
 }
+
+/**
+ * @desc 判断初始值是否为所需类型，不是则返回备用值（一般为该类型的空值）
+ * @param original 原始值
+ * @param backup 备用值
+ */
+export function factory(original: any, backup: any = ''): any {
+  function type(o: any) {
+    return Object.prototype.toString.call(o).slice(8, -1);
+  }
+
+  const srcType = type(original);
+  const desType = type(backup);
+
+  if (srcType === desType) {
+    return original;
+  } else {
+    return backup;
+  }
+}
+
+/**
+ * @desc 取值函数
+ */
+export function calc(obj: any, path: string | Array<string>, type: any): any {
+  path = Array.isArray(path) ? path : path.replace(/\[/g, '.').replace(/\]/g, '').split('.');
+  return path.reduce((o, k) => (o || {})[k], obj) || factory(obj, type);
+}
