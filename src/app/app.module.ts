@@ -13,9 +13,10 @@ import { AppComponent } from './app.component';
 /** 配置 angular i18n **/
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { NgShareJncModule } from 'projects/share-jnc/ng-share-jnc.module';
-import { environment } from 'src/environments/environment';
 registerLocaleData(zh);
+
+import { environment } from 'src/environments/environment';
+import { NgShareJncModule } from 'ng-share-jnc';
 
 @NgModule({
   declarations: [

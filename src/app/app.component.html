@@ -8,8 +8,8 @@
   <!-- <zc-map-baidu-position [(isVisible)]="isVisible" (retPlacePlace)="retData($event)"></zc-map-baidu-position> -->
 
   <button (click)="isVisibleCro=!isVisibleCro">isVisibleCro</button>
-  <zc-image-cropper [(isVisible)]="isVisibleCro" [resizeToWidth]="icWidht" [aspectRatio]="icRatio" [folderName]="folderName"
-    (retImage)="retData($event)">
+  <zc-image-cropper [(isVisible)]="isVisibleCro" [resizeToWidth]="icWidht" [aspectRatio]="icRatio"
+    [folderName]="folderName" (retImage)="retData($event)">
   </zc-image-cropper>
 
   <!-- <zc-address-linkage [ngModel]="address" (ngModelChange)="retData($event)"></zc-address-linkage> -->
@@ -45,12 +45,13 @@
 
 
   <!-- 表单实例 -->
-  <form [formGroup]="dynForm">
+  <!-- <form [formGroup]="dynForm"> -->
     <div style="width: 500px;height: 300px;position: relative;">
-      <zc-map-baidu-position-point formControlName="map">
-      </zc-map-baidu-position-point>
+      <!-- <zc-map-baidu-position-point formControlName="map"></zc-map-baidu-position-point> -->
+      <zc-map-baidu-position-point [(ngModel)]="map"></zc-map-baidu-position-point>
     </div>
     <pre>{{dynForm.value|json}}</pre>
-  </form>
+    <pre>{{map|json}}</pre>
+  <!-- </form> -->
 
 </div>

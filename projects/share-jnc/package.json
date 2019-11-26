@@ -1,6 +1,6 @@
 {
-  "name": "share-jnc",
-  "version": "0.0.1",
+  "name": "ng-share-jnc",
+  "version": "0.0.3",
   "homepage": "https://github.com/xtqjh/zerolibrary",
   "peerDependencies": {
     "@angular/animations": "^7.0.0",

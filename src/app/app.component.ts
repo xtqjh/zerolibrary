@@ -11,10 +11,11 @@ export class AppComponent {
 
   isVisible = false;
 
-  map = {
-    longitude: 106.75130305557326,
-    latitude: 31.872720774936845
-  };
+  map = null;
+  // map = {
+  //   longitude: 106.75130305557326,
+  //   latitude: 31.872720774936845
+  // };
 
   // 图像裁剪
   isVisibleCro = false;
@@ -50,11 +51,12 @@ export class AppComponent {
     // ]
     // address: [this.fb.array([]), [Validators.required]],
     // flowId: 3329,
-    map: {
-      longitude: null,
-      latitude: null,
-      address: '成都市武侯区桧溪街道剑南大道1434号'
-    }
+    map: null,
+    // map: {
+    //   longitude: 106.75130305557326,
+    //   latitude: 31.872720774936845,
+    //   address: '成都市武侯区桧溪街道剑南大道1434号'
+    // }
   });
 
   flieExcel = null;
