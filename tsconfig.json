@@ -35,6 +35,12 @@
       ],
       "share-mobile/*": [
         "dist/share-mobile/*"
+      ],
+      "share-jnc": [
+        "dist/share-jnc"
+      ],
+      "share-jnc/*": [
+        "dist/share-jnc/*"
       ]
     }
   }

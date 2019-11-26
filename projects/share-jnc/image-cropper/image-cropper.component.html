@@ -1,0 +1,28 @@
+<nz-modal [nzVisible]="isVisible" [nzWidth]="600" [nzClosable]="false" [nzTitle]="'图像裁剪'" [nzContent]="modalContent"
+  [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+  <ng-template #modalFooter>
+    <a class="fl newimgbtna">
+      选择文件
+      <input type="file" class="newimgbtn" (change)="fileChangeEvent($event)" accept="image/*" />
+    </a>
+    <button nz-button nzType="default" (click)="handleCancel()">取 消</button>
+    <button nz-button nzType="primary" (click)="handleOk()">确 认</button>
+  </ng-template>
+  <ng-template #modalContent>
+    <div class="cl jt-icon-wk">
+      <div class="jt-icon-left">
+        <div class="jt-icon-left-ts" *ngIf="!imageChangedEvent">请选择图片</div>
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="aspectRatio"
+          [resizeToWidth]="resizeToWidth" format="png" (imageCroppedBase64)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+          (loadImageFailed)="loadImageFailed()"></image-cropper>
+      </div>
+      <div class="jt-icon-right pd-l20">
+        <div class="color-blue font-24 pd-b10">
+          预览
+          <span class="d-block color-888 font-12">{{resizeToWidth}}px * {{resizeToWidth / aspectRatio}}px</span>
+        </div>
+        <div class="jt-icon-img"><img class="border" [src]="croppedImage" /></div>
+      </div>
+    </div>
+  </ng-template>
+</nz-modal>

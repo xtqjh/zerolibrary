@@ -1,0 +1,13 @@
+<div class="temp-left-add-title" [@fadeIn] [@fadeOut]>
+  控件库
+</div>
+<ul class="temp-left-addlist" [@fadeIn] [@fadeOut]>
+  <ng-container *ngFor="let item of items">
+    <!-- <ng-container *ngIf="!subordinate && item.key!='Group' && item.key!='GroupSwitch'"> -->
+      <li (click)="selectItem(item)">
+        <span class="iconfont {{item.icon}}"></span>
+        <span class="font-size12">{{item.txt}}</span>
+      </li>
+    <!-- </ng-container> -->
+  </ng-container>
+</ul>

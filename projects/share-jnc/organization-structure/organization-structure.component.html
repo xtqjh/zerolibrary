@@ -1,0 +1,96 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="选择可见范围" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCance()">
+
+  <ng-template #modalContent>
+    <div class="flex flex-row flex-auto" style="width: 700px;">
+
+      <div class="flex flex-column" style="max-width: 400px; min-width: 400px;">
+        <nz-input-group [nzSuffix]="suffixIcon">
+          <input type="text" nz-input placeholder="搜索部门、成员、岗位、编制、标签" [(ngModel)]="searchValue">
+        </nz-input-group>
+        <ng-template #suffixIcon>
+          <i class="anticon anticon-search"></i>
+        </ng-template>
+        <nz-tabset>
+          <nz-tab nzTitle="组织架构" (nzClick)="mouseAction('CheckBoxDMT', $event)" *ngIf="tabParam?.organizational">
+            <div id="scrollbarA" class="zd-ant-attr-back" style="height: 410px; display: flow-root;">
+              <nz-tree #treeComDMT [nzData]="nodesDMT" [nzSearchValue]="searchValue" [nzCheckable]="true"
+                [nzDefaultExpandAll]="true" [nzCheckedKeys]="ncksDMT" (nzCheckBoxChange)="mouseAction('CheckBoxDMT', $event)">
+                <ng-template #nzTreeTemplate let-node>
+                  <span [class.color-red]="node.isMatched">
+                    <i class="pd-l8 pd-r8 color-grey" [ngClass]="node.origin.icon"></i>
+                    {{node.title}}
+                  </span>
+                </ng-template>
+              </nz-tree>
+            </div>
+          </nz-tab>
+          <nz-tab nzTitle="岗位" (nzClick)="mouseAction('CheckBoxCPT', $event)" *ngIf="tabParam?.post">
+            <div id="scrollbarB" class="zd-ant-attr-back" style="height: 410px; display: flow-root;">
+              <nz-tree #treeComCPT [nzData]="nodesCPT" [nzSearchValue]="searchValue" [nzCheckable]="true"
+                [nzDefaultExpandAll]="true" [nzCheckedKeys]="ncksCPT" (nzCheckBoxChange)="mouseAction('CheckBoxCPT', $event)">
+                <ng-template #nzTreeTemplate let-node>
+                  <span [class.color-red]="node.isMatched">
+                    <i class="pd-l8 pd-r8 color-grey" [ngClass]="node.origin.icon"></i>
+                    {{node.title}}
+                  </span>
+                </ng-template>
+              </nz-tree>
+            </div>
+          </nz-tab>
+          <nz-tab nzTitle="编制" (nzClick)="mouseAction('CheckBoxDPT', $event)" *ngIf="tabParam?.departmentPost">
+            <div id="scrollbarC" class="zd-ant-attr-back" style="height: 410px; display: flow-root;">
+              <nz-switch [(ngModel)]="stbcDPT" nzCheckedChildren="单个" nzUnCheckedChildren="相同"></nz-switch>
+              <nz-tree #treeComDPT [nzData]="nodesDPT" [nzSearchValue]="searchValue" [nzCheckable]="true"
+                [nzDefaultExpandAll]="true" [nzCheckedKeys]="ncksDPT" (nzCheckBoxChange)="mouseAction('CheckBoxDPT', $event)">
+                <ng-template #nzTreeTemplate let-node>
+                  <span [class.color-red]="node.isMatched">
+                    <i class="pd-l8 pd-r8 color-grey" [ngClass]="node.origin.icon"></i>
+                    {{node.title}}
+                  </span>
+                </ng-template>
+              </nz-tree>
+            </div>
+          </nz-tab>
+          <nz-tab nzTitle="标签" (nzClick)="mouseAction('CheckBoxRTT', $event)" *ngIf="tabParam?.tag">
+            <div id="scrollbarD" class="zd-ant-attr-back" style="height: 410px; display: flow-root;">
+              <nz-tree #treeComRTT [nzData]="nodesRTT" [nzSearchValue]="searchValue" [nzCheckable]="true"
+                [nzDefaultExpandAll]="true" [nzCheckedKeys]="ncksRTT" (nzCheckBoxChange)="mouseAction('CheckBoxRTT', $event)">
+                <ng-template #nzTreeTemplate let-node>
+                  <span [class.color-red]="node.isMatched">
+                    <i class="pd-l8 pd-r8 color-grey" [ngClass]="node.origin.icon"></i>
+                    {{node.title}}
+                  </span>
+                </ng-template>
+              </nz-tree>
+            </div>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+      <div class="border-left mg-l30 pd-l30 flex-auto" style="width:40%;">
+        <div class="font-16 color-grey-deep line-32">已选择的范围</div>
+        <div id="scrollbarSelect" style="height: 410px; display: flow-root; margin-top: 18px;">
+          <ng-container *ngFor="let item of selectItems">
+            <div class="flex flex-row flex-justify-between flex-items-center pd-b10 mg-r20">
+              <div>
+                <i class="color-grey" [ngClass]="item.icon"></i>
+                <span class="pd-l10 color-grey">
+                  {{item.title}}
+                  <span class="color-grey-light">{{item.department_name ? '('+item.department_name+')':''}}</span>
+                </span>
+              </div>
+              <div (click)="closeSelectItem(item)">
+                <i class="iconfont icon-guanbi3 font-12 cur-p color-grey"></i>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="handleCance()">取 消</button>
+    <button nz-button nzType="primary" (click)="handleOk()">确 认</button>
+  </ng-template>
+</nz-modal>

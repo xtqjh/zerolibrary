@@ -6,6 +6,7 @@
 ## 编译发布的包
 `ng build share-desktop` 
 `ng build share-mobile` 
+`ng build share-jnc` 
 
 ## 上传发布的包
 `cd dist/share-desktop`

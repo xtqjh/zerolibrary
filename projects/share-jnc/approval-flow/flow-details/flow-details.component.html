@@ -1,0 +1,13 @@
+<div>
+  <div class="font-14 pd-b20">审批流程</div>
+  <div class="pd-b20">
+    <nz-timeline>
+      <zc-flow-details-item [value]="steps"></zc-flow-details-item>
+    </nz-timeline>
+  </div>
+  <ng-template #dotTemplate>
+    <i nz-icon type="check-circle" style="font-size: 14px;"></i>
+  </ng-template>
+  <div class="h-1 mg-b20"></div>
+  <div class="font-14 pd-b20">抄送人： {{ ccStaffsNameStr || '--'}}</div>
+</div>

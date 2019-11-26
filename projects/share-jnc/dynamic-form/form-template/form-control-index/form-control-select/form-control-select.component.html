@@ -1,0 +1,17 @@
+<div class="temp-list back-fff" [class.temp-list-active]="item?.select$">
+  <div class="temp-form-row">
+    <span>
+      {{item?.name}}
+      <ng-container *ngFor="let vali of item?.validators">
+        <i class="color-red pd-l5" *ngIf="vali.type=='required'">*</i>
+      </ng-container>
+    </span>
+    <span class="color-888">
+      {{item?.placeholder}}
+      <i class="iconfont icon-jiantou-copy font-size12"></i>
+    </span>
+  </div>
+  <div class="temp-list-close" (click)="resRemove.emit(true)">
+    <span class="iconfont icon-guanbi4 font-size12"></span>
+  </div>
+</div>

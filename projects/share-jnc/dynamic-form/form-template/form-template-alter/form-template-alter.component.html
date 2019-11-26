@@ -1,0 +1,65 @@
+<div class="form-edit_item">
+  <div class="form-edit_item_left">
+    <span class="font-size14">模板名称</span>
+  </div>
+  <div class="form-edit_item_right">
+    <input type="text" class="form_input" [(ngModel)]="item.name" (keyup)="setResItemChange()">
+  </div>
+</div>
+
+<div class="form-edit_item">
+  <div class="form-edit_item_left">
+    <span class="font-size14">模板图标</span>
+  </div>
+  <div class="form-edit_item_right">
+    <div class="temp-form-file2 mg-t5" (click)="isVisibleCro=!isVisibleCro">
+      <img class="temp-form-file2-img" [src]="item.icon || '../../../../assets/img/img-zhanwei.png'">
+    </div>
+
+    <!--模板图标-->
+    <div *ngIf="tempaddimg" #tempLeftWkimg class="temp-left-wkimg" (blur)="tempaddimg=!tempaddimg" tabindex="0" style="outline:none;">
+      <div class="temp-left-add-title">控件库</div>
+      <ul class="temp-left-addlist temp-left-addimg">
+        <li>
+          <span class="iconfont icon-wenben1"></span>
+        </li>
+        <li>
+          <span class="iconfont icon-duohangwenben"></span>
+        </li>
+        <li class="temp-left-addimg-xz">
+          <span class="iconfont icon-shuzi"></span>
+        </li>
+        <li>
+          <span class="iconfont icon-riqi1"></span>
+        </li>
+        <li>
+          <span class="iconfont icon-riqi"></span>
+        </li>
+        <li>
+          <span class="iconfont icon-fujian2"></span>
+        </li>
+        <li>
+          <span class="iconfont icon-mingxi"></span>
+        </li>
+        <li>
+          <span class="iconfont icon-jine1"></span>
+        </li>
+        <li>
+          <span class="iconfont icon-mg-radio2"></span>
+        </li>
+        <li>
+          <span class="iconfont icon-duoxuan"></span>
+        </li>
+        <li>
+          <span class="iconfont icon-profile"></span>
+        </li>
+      </ul>
+    </div>
+    <!--模板图标 end-->
+
+  </div>
+</div>
+
+<zc-image-cropper *ngIf="isVisibleCro" [(isVisible)]="isVisibleCro" [resizeToWidth]="icWidht" [aspectRatio]="icRatio"
+  [folderName]="'formTemplate'" (retImage)="retImage($event)">
+</zc-image-cropper>

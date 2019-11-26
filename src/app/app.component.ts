@@ -1,24 +1,19 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { MalihuScrollbarComponent } from 'ng-share-desktop';
-import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AnalysisService, ObjectToArrayPipe, LeftTrimPipe, isClone } from 'projects/share-desktop/ng-share-desktop.module';
-import { xlsx } from 'node-xlsx';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [ObjectToArrayPipe, LeftTrimPipe]
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent extends MalihuScrollbarComponent {
+export class AppComponent {
 
   isVisible = false;
 
   map = {
-    longitude: 106.486654,
-    latitude: 29.490295
+    longitude: 106.75130305557326,
+    latitude: 31.872720774936845
   };
 
   // 图像裁剪
@@ -45,7 +40,7 @@ export class AppComponent extends MalihuScrollbarComponent {
   ];
 
   dynForm: FormGroup = this.fb.group({
-    input: [null, Validators.required],
+    // input: [null, Validators.required],
     // address: [
     //   [
     //     { code: '510', title: '四川省' },
@@ -53,8 +48,13 @@ export class AppComponent extends MalihuScrollbarComponent {
     //     // { code: '510106000000', title: '金牛区' }
     //   ], [Validators.required]
     // ]
-    address: [this.fb.array([]), [Validators.required]],
-    flowId: 3329
+    // address: [this.fb.array([]), [Validators.required]],
+    // flowId: 3329,
+    map: {
+      longitude: null,
+      latitude: null,
+      address: '成都市武侯区桧溪街道剑南大道1434号'
+    }
   });
 
   flieExcel = null;
@@ -62,36 +62,13 @@ export class AppComponent extends MalihuScrollbarComponent {
   items = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   constructor(
-    changeDetectorRef$: ChangeDetectorRef,
-    mScrollbarService$: MalihuScrollbarService,
-    private fb: FormBuilder,
-    private analysisService: AnalysisService,
-    private pipeA: LeftTrimPipe,
-    private pipeB: ObjectToArrayPipe
+    private fb: FormBuilder
   ) {
-    super(changeDetectorRef$, mScrollbarService$);
 
-    const resultA = this.pipeA.transform('   foo bar   ');
-    const resultB = this.pipeB.transform({ a: 'a', b: 'b' });
-
-    console.log(isClone({ a: '1', b: '2' }));
-
-    console.log(resultA, resultB);
   }
 
   public retData(event) {
     console.log(event);
-
-    const fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      const file: File = fileList[0];
-      console.log(file);
-
-      this.analysisService.fileAnalysisExcel(file);
-
-      const workSheetsFromBuffer = xlsx.parse(file['path']);
-      console.log(workSheetsFromBuffer);
-    }
   }
 
   public handleOk() {

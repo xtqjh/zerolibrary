@@ -1,0 +1,27 @@
+<div class="temp-list back-fff" [class.temp-list-active]="item.get('select$').value">
+  <span>{{item.get('name').value || '组名称'}}</span>
+  <div class="temp-form-column">
+    
+    <!--子控件-->
+    <ng-container *ngFor="let field of item.get('fields').value;let i = index" [ngSwitch]="true">
+      <!-- 文件 -->
+      <ng-container class="temp-form-fu" *ngSwitchCase="field?.type=='File' || field?.type=='Image'">
+        <zc-form-control-file [item]="field" (resRemove)="setItemRemove($event,i)" (click)="setItemSelect(field)"></zc-form-control-file>
+      </ng-container>
+
+      <!-- 选择 -->
+      <ng-container class="temp-form-fu" *ngSwitchCase="field?.type=='SingleChoose' || field?.type=='Choose' || field?.type=='Area' || field?.type=='Product' || field?.type=='Customer' || field?.type=='Formula' || field?.type=='Boolean'">
+        <zc-form-control-select [item]="field" (resRemove)="setItemRemove($event,i)" (click)="setItemSelect(field)"></zc-form-control-select>
+      </ng-container>
+
+      <ng-container class="temp-form-fu" *ngSwitchDefault>
+        <zc-form-control-input [item]="field" (resRemove)="setItemRemove($event,i)" (click)="setItemSelect(field)"></zc-form-control-input>
+      </ng-container>
+    </ng-container>
+    <!--子控件 end-->
+
+  </div>
+  <div class="temp-list-close" (click)="resRemove.emit(true)">
+    <span class="iconfont icon-guanbi4 font-size12"></span>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/share-jnc",
+  "lib": {
+    "entryFile": "ng-share-jnc.module.ts"
+  },
+  "whitelistedNonPeerDependencies": [
+    "."
+  ]
+}

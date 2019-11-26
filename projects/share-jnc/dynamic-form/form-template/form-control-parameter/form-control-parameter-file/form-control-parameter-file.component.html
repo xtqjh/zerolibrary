@@ -1,0 +1,46 @@
+<form [formGroup]="item">
+  <div class="form-edit_item">
+    <div class="form-edit_item_left">
+      <span class="font-size14">数量</span>
+    </div>
+    <div class="form-edit_item_right">
+      <input type="number" class="form_input" formControlName="number" placeholder="文件上传的数量">
+    </div>
+  </div>
+  <div class="form-edit_item">
+    <div class="form-edit_item_left">
+      <span class="font-size14">摄像头</span>
+    </div>
+    <div class="form-edit_item_right">
+      <nz-switch [nzSize]="'small'" formControlName="onlyCamera" class="dis-inline-block "></nz-switch>
+      <content class="font-size14 color-888 mg-l10">只允许使用摄像头</content>
+    </div>
+  </div>
+  <div class="form-edit_item">
+    <div class="form-edit_item_left">
+      <span class="font-size14">文件类型</span>
+    </div>
+    <div class="form-edit_item_right">
+      <!-- <input type="text" class="form_input" formControlName="mimeType" placeholder="指定文件类型,例如：image/*"> -->
+      <select class="form_select" formControlName="mimeType">
+        <option *ngFor="let ftl of file_type_list" value="{{ftl.key}}">{{ftl.txt}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-edit_item">
+    <div class="form-edit_item_left">
+      <span class="font-size14">水印</span>
+    </div>
+    <div class="form-edit_item_right" formGroupName="waterMark">
+      <nz-switch [nzSize]="'small'" formControlName="random" class="dis-inline-block "></nz-switch>
+      <content class="font-size14 color-888 mg-l10">水印是否添加随机码</content>
+      <br>
+      <nz-switch [nzSize]="'small'" formControlName="gps" class="dis-inline-block "></nz-switch>
+      <content class="font-size14 color-888 mg-l10">水印是否添加gps经纬度</content>
+      <br>
+      <nz-switch [nzSize]="'small'" formControlName="time" class="dis-inline-block "></nz-switch>
+      <content class="font-size14 color-888 mg-l10">水印是否添加时间</content>
+      <br>
+    </div>
+  </div>
+</form>

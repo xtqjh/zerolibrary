@@ -1,0 +1,27 @@
+<form [formGroup]="item">
+  <div class="form-edit_item" *ngIf="item.get('type').value=='Choose'">
+    <div class="form-edit_item_left">
+      <span class="font-size14">选择数量</span>
+    </div>
+    <div class="form-edit_item_right">
+      <input type="number" class="form_input" formControlName="number">
+    </div>
+  </div>
+  <div class="form-edit_item">
+    <div class="form-edit_item_left">
+      <span class="font-size14">选项</span>
+    </div>
+    <div class="form-edit_item_right" formArrayName="candidates$">
+      <div class="dis-table pd-b10 w100" *ngFor="let cand of item.controls['candidates$']['controls'];let _c = index" [formGroupName]="_c">
+        <span>
+          <input style="width:190px;" type="text" class="form_input" name="candidates_{{_c}}" formControlName="value" (ngModelChange)="candidatesChange()"
+            placeholder="选项" />
+        </span>
+        <span>
+          <i class="iconfont icon-wuuiconxiangjifangda mg-l10 font-size18 cur-p color-d8" (click)="addCandidates()"></i>
+          <i class="iconfont icon-jian mg-l10 font-size18 cur-p color-d8" *ngIf="item.get('candidates').value.length!=1" (click)="delCandidates(_c)"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</form>

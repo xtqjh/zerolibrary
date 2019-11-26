@@ -1,0 +1,22 @@
+<nz-timeline-item *ngFor="let timeLineItem of timeLineInfoList" [nzDot]="getTmp(timeLineItem.auditStatus)" [nzColor]="'#2486F4'">
+  <div class="zdng-multiline-list mg-l10 list-hover pd-b6" *ngFor="let item of timeLineItem.approverAuditValues">
+    <div class="zd-icon30">
+      <img [src]="'http://saasapidev.f-plm.com/public/user/avatar?postCode=' + item.postCode" class="zd-icon30 border-default">
+    </div>
+    <div class="flex flex-row flex-justify-between flex-items-center mg-l10 wb100">
+      <p>
+        <strong class="pd-r10 font-14">{{item.name}} · {{ApprovalStatus[item.auditStatus]}}</strong>
+      </p>
+      <span class="color-888" *ngIf="item.auditStatus=='Audited'">{{item.updateTime | date: 'MM/dd HH:mm'}}</span>
+    </div>
+  </div>
+</nz-timeline-item>
+<!-- 驳回显示的图标 -->
+<ng-template #rejectTmp>
+  <i nz-icon type="exclamation-circle" style="font-size: 16px;color: red"></i>
+</ng-template>
+
+<!-- 同意显示的图标 -->
+<ng-template #auditedTmp>
+  <i nz-icon type="check-circle" theme="outline"></i>
+</ng-template>

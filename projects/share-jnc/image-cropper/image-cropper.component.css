@@ -1,0 +1,20 @@
+
+.newimgbtna{
+  position: relative;
+  line-height: 30px;
+  height: 30px;
+}
+.newimgbtn{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.jt-icon-wk{width: 600px; display: flex; flex-direction: row;}
+.jt-icon-left{width:400px;height:400px; margin-right: 20px; display: flex; align-items: center; justify-content: center;  background:rgba(0,0,0,0.02);}
+.jt-icon-right{width:200px; border-left: 1px solid #e5e5e5}
+.jt-icon-img img{max-width: 150px; max-height: 150px;}
+.jt-icon-img:before{opacity: 0}
+.jt-icon-left-ts{text-align: center; color: #ccc; font-size: 24px; position: absolute; top:240px; left: 0px; width:400px}

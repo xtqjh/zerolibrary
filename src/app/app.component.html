@@ -7,10 +7,10 @@
 
   <!-- <zc-map-baidu-position [(isVisible)]="isVisible" (retPlacePlace)="retData($event)"></zc-map-baidu-position> -->
 
-  <!-- <button (click)="isVisibleCro=!isVisibleCro">isVisibleCro</button>
+  <button (click)="isVisibleCro=!isVisibleCro">isVisibleCro</button>
   <zc-image-cropper [(isVisible)]="isVisibleCro" [resizeToWidth]="icWidht" [aspectRatio]="icRatio" [folderName]="folderName"
     (retImage)="retData($event)">
-  </zc-image-cropper> -->
+  </zc-image-cropper>
 
   <!-- <zc-address-linkage [ngModel]="address" (ngModelChange)="retData($event)"></zc-address-linkage> -->
 
@@ -37,10 +37,20 @@
 
   <!-- <div [zcLoading]="isVisible"></div> -->
 
-  <ul>
+  <!-- <ul>
     <li *ngFor="let item of items | diff: [2, 4]">{{item}}</li>
-  </ul>
+  </ul> -->
 
-  <input type="file" (change)="retData($event)">
+  <!-- <input type="file" (change)="retData($event)"> -->
+
+
+  <!-- 表单实例 -->
+  <form [formGroup]="dynForm">
+    <div style="width: 500px;height: 300px;position: relative;">
+      <zc-map-baidu-position-point formControlName="map">
+      </zc-map-baidu-position-point>
+    </div>
+    <pre>{{dynForm.value|json}}</pre>
+  </form>
 
 </div>

@@ -210,6 +210,41 @@
           }
         }
       }
+    },
+    "share-jnc": {
+      "root": "projects/share-jnc",
+      "sourceRoot": "projects/share-jnc/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/share-jnc/tsconfig.lib.json",
+            "project": "projects/share-jnc/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/share-jnc/src/test.ts",
+            "tsConfig": "projects/share-jnc/tsconfig.spec.json",
+            "karmaConfig": "projects/share-jnc/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/share-jnc/tsconfig.lib.json",
+              "projects/share-jnc/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "zerolibrary"

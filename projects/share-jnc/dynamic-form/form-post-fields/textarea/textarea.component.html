@@ -1,0 +1,8 @@
+<div class="form-edit_item">
+  <div class="form-edit_item_left w100">
+    <span>{{field.name}}</span>
+  </div>
+  <div class="form-edit_item_right">
+    <textarea nz-input name="{{field.id}}" (change)="ngValueChanges($event)" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+  </div>
+</div>
