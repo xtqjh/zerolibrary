@@ -1,12 +1,24 @@
-import { Injectable } from '@angular/core';
-// import { GatewayUrl } from 'jsw-electron-sdk';
+import { Injectable, Inject } from '@angular/core';
 
 
-export class AbmConfig {
+export class CampConfig {
+
   /**
-   * 网关前缀
+   * 网关地址
    */
   GatewayUrl: string;
+
+  /**
+   * 生产环境
+   */
+  Production?: boolean;
+
+  /**
+   * 调试环境下固定 TOKEN
+   */
+  DebugToken?: string;
+
+  url?: LoadUrl;
 }
 
 
@@ -15,30 +27,40 @@ export class AbmConfig {
 })
 export class ConfigService {
 
-  constructor(cog: AbmConfig) {
-    this.GatewayUrl = cog.GatewayUrl;
+  public CampConfig: CampConfig;
+
+  // @Inject('CampConfig') public cog: CampConfig
+  constructor(
+    cog: CampConfig
+  ) {
+    console.log(cog);
+    this.CampConfig = cog;
+    Object.assign(this.$URL = {
+      auth: `${this.CampConfig.GatewayUrl}/auth/`, // 授权
+      custom: `${this.CampConfig.GatewayUrl}/custom/`, // 客户
+      jswapi: `${this.CampConfig.GatewayUrl}/public/`, // 大多数都是cj那边接口
+      appapi: `${this.CampConfig.GatewayUrl}/app/api/`, // appapi
+      fileapi: `${this.CampConfig.GatewayUrl}/file-disk/api/`, // 文件盘
+      hr: `${this.CampConfig.GatewayUrl}/hr/`, // 人力资源
+      cost: `${this.CampConfig.GatewayUrl}/cost/`, // 费用
+      address: `${this.CampConfig.GatewayUrl}/address/api/`, // 地址
+      outer: `${this.CampConfig.GatewayUrl}/outerwork/`, // 工作区域
+      live: `${this.CampConfig.GatewayUrl}/online-audit/`, // 直播审核
+      ex: `${this.CampConfig.GatewayUrl}/exhibition/`, // 展会会议
+      pay: `${this.CampConfig.GatewayUrl}/pay/`, // 支付
+      note: `${this.CampConfig.GatewayUrl}/note/`, // 笔记
+      contract: `${this.CampConfig.GatewayUrl}/contracts/`, // 合同
+      oa: `${this.CampConfig.GatewayUrl}/oa/`, // OA
+      orders: `${this.CampConfig.GatewayUrl}/orders/`, // 订单
+    }, this.CampConfig.url || {});
+    console.log(this.$URL);
   }
 
-  public GatewayUrl: String;
+  private $URL: LoadUrl;
 
-  public url = {
-    auth: `${this.GatewayUrl}/auth/`, // 授权
-    custom: `${this.GatewayUrl}/custom/`, // 客户
-    jswapi: `${this.GatewayUrl}/jswapi/public/`, // 大多数都是cj那边接口
-    appapi: `${this.GatewayUrl}/app/api/`, // appapi
-    fileapi: `${this.GatewayUrl}/file-disk/api/`, // 文件盘
-    hr: `${this.GatewayUrl}/hr/`, // 人力资源
-    cost: `${this.GatewayUrl}/cost/`, // 费用
-    address: `${this.GatewayUrl}/address/api/`, // 地址
-    outer: `${this.GatewayUrl}/outerwork/`, // 工作区域
-    live: `${this.GatewayUrl}/online-audit/`, // 直播审核
-    ex: `${this.GatewayUrl}/exhibition/`, // 展会会议
-    pay: `${this.GatewayUrl}/pay/`, // 支付
-    note: `${this.GatewayUrl}/note/`, // 笔记
-    contract: `${this.GatewayUrl}/contracts/`, // 合同
-    oa: `${this.GatewayUrl}/oa/`, // OA
-    orders: `${this.GatewayUrl}/orders/`, // 订单
-  };
+  get url() {
+    return this.$URL;
+  }
 
 }
 
@@ -60,5 +82,24 @@ export interface Page<T> {
   sort: any;
   totalElements: number;
   totalPages: number;
+}
+
+export interface LoadUrl {
+  auth?: string;
+  custom?: string;
+  jswapi?: string;
+  appapi?: string;
+  fileapi?: string;
+  hr?: string;
+  cost?: string;
+  address?: string;
+  outer?: string;
+  live?: string;
+  ex?: string;
+  pay?: string;
+  note?: string;
+  contract?: string;
+  oa?: string;
+  orders?: string;
 }
 

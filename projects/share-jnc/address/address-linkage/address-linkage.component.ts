@@ -148,9 +148,14 @@ export class AddressLinkageComponent implements ControlValueAccessor {
   // 获取地址列表
   private getAddress(_code, _type) {
     const _url = `${this.address}address-area?parentCode=${_code}`;
-    const _headers = new HttpHeaders()
-      .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
+    let _headers = new HttpHeaders()
+      // .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
       .set('X-Requested-With', 'XMLHttpRequest');
+
+    if (!this.config.CampConfig.Production) {
+      _headers = _headers.set('Authorization', 'bearer ' + this.config.CampConfig.DebugToken);
+    }
+
     this.http.get<Result<any>>(_url, { headers: _headers }).pipe(
       filter((v: Result<any>) => v.errCode === 0),
       map((v: Result<any>) => v.content)

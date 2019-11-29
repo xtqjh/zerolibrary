@@ -19,7 +19,6 @@
  *        folderName = 'formTemplate';
  */
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { ConfigService } from '../core/service/config.service';
 import { MessagesService } from '../core/service/messages.service';
 import { convertBase64UrlToBlob } from '../core/tools/convert';
 import { isGuid } from '../core/tools/string';

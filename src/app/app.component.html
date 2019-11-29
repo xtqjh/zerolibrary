@@ -44,14 +44,8 @@
   <!-- <input type="file" (change)="retData($event)"> -->
 
 
-  <!-- 表单实例 -->
-  <!-- <form [formGroup]="dynForm"> -->
-    <div style="width: 500px;height: 300px;position: relative;">
-      <!-- <zc-map-baidu-position-point formControlName="map"></zc-map-baidu-position-point> -->
-      <zc-map-baidu-position-point [(ngModel)]="map"></zc-map-baidu-position-point>
-    </div>
-    <pre>{{dynForm.value|json}}</pre>
-    <pre>{{map|json}}</pre>
-  <!-- </form> -->
+  <zc-organization-structure [(isVisible)]="isVisible" [beChosen]="viewRanges"
+    [tabParam]="{organizational:true,organizationalShowType:'department'}" (result)="retData($event)">
+  </zc-organization-structure>
 
 </div>

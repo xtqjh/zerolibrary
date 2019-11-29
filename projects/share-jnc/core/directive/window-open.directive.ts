@@ -5,7 +5,6 @@
  * @使用: <a [options]="{width:900,minWidth:900}" routerLink="/url/all/list" target="_blank">打开窗体</a>
  */
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
-import { ConfigService } from '../service/config.service';
 import { isGuid } from '../tools/string';
 
 @Directive({
@@ -15,8 +14,7 @@ import { isGuid } from '../tools/string';
 export class WindowOpenDirective {
 
   constructor(
-    private el: ElementRef,
-    private config: ConfigService
+    private el: ElementRef
   ) {
   }
 

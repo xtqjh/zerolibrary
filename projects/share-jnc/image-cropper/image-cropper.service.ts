@@ -10,11 +10,11 @@ import { Result, ConfigService } from '../core/service/config.service';
 })
 export class ImageCropperService {
 
-  private url$ = `${this.pages.url.fileapi}`;
+  private url$ = `${this.config.url.fileapi}`;
 
   constructor(
     private http: HttpClient,
-    private pages: ConfigService
+    private config: ConfigService
   ) { }
 
 
@@ -56,10 +56,13 @@ export class ImageCropperService {
    * OSS签名
    */
   public getSignature() {
-    const _headers = new HttpHeaders()
-      .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
+    let _headers = new HttpHeaders()
+      // .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
       .set('X-Requested-With', 'XMLHttpRequest');
     const url = `${this.url$}file-disk/signature.json`;
+    if (!this.config.CampConfig.Production) {
+      _headers = _headers.set('Authorization', 'bearer ' + this.config.CampConfig.DebugToken);
+    }
     return this.http.get<Result<any>>(url, { headers: _headers }).pipe(
       filter((v: Result<any>) => v.errCode === 0),
       map((v: Result<any>) => v.content)

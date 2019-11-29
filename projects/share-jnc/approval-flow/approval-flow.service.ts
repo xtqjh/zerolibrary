@@ -12,7 +12,7 @@ export class ApprovalFlowService {
   private custom = `${this.config.url.custom}`;
 
   private _headers = new HttpHeaders()
-    .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
+    // .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
     .set('X-Requested-With', 'XMLHttpRequest');
 
   constructor(
@@ -20,7 +20,9 @@ export class ApprovalFlowService {
     private http: HttpClient,
     private config: ConfigService
   ) {
-
+    if (!this.config.CampConfig.Production) {
+      this._headers = this._headers.set('Authorization', 'bearer ' + this.config.CampConfig.DebugToken);
+    }
   }
 
   /**

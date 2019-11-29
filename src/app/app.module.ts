@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 // import { NgShareDesktopModule } from 'ng-share-desktop';
 // import { NgShareDesktopModule } from '../../projects/share-desktop/ng-share-desktop.module';
-import { httpInterceptorProviders } from './http-interceptors';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -30,10 +29,10 @@ import { NgShareJncModule } from 'ng-share-jnc';
     BrowserAnimationsModule,
     NgZorroAntdModule,
     // NgShareDesktopModule.forRoot(),
-    NgShareJncModule.forRoot({ GatewayUrl: environment.GatewayUrl }),
+    NgShareJncModule.forRoot({ GatewayUrl: environment.GatewayUrl, Production: environment.production, DebugToken: environment.DebugToken }),
     AppRoutingModule,
   ],
-  providers: [httpInterceptorProviders, { provide: NZ_I18N, useValue: zh_CN }],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

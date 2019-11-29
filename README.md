@@ -9,7 +9,7 @@
 `ng build share-jnc` 
 
 ## 上传发布的包
-`cd dist/share-desktop`
+`cd dist/share-jnc`
 `npm publish` 
 
 ## 删除发布的包

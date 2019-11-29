@@ -12,7 +12,7 @@ import { Result, ConfigService } from '../core/service/config.service';
 export abstract class AbsUploadComponet {
 
   private _headers = new HttpHeaders()
-    .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
+    // .set('Authorization', 'bearer ' + localStorage.getItem('access_token'))
     .set('X-Requested-With', 'XMLHttpRequest');
 
   // private config: ConfigService = new ConfigService();
@@ -22,7 +22,11 @@ export abstract class AbsUploadComponet {
   constructor(
     private http: HttpClient,
     private config: ConfigService
-  ) { }
+  ) {
+    if (!this.config.CampConfig.Production) {
+      this._headers = this._headers.set('Authorization', 'bearer ' + this.config.CampConfig.DebugToken);
+    }
+  }
 
   private buildPostData(args: UploadXHRArgs) {
     return this.buildSing$()

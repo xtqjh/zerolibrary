@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { DirectiveModule } from './core/directive/directive.module';
 import { PipeModule } from './core/pipe/pipe.module';
@@ -14,7 +14,8 @@ import { NgObjectPipesModule } from './core/pipe/object/index';
 import { NgStringPipesModule } from './core/pipe/string/index';
 import { NgMathPipesModule } from './core/pipe/math/index';
 import { NgBooleanPipesModule } from './core/pipe/boolean/index';
-import { AbmConfig } from './core/service/config.service';
+
+import { CampConfig, ConfigService } from './core/service/config.service';
 
 export * from './animations';
 export * from './core';
@@ -45,14 +46,13 @@ export * from './dynamic-form';
   ]
 })
 export class NgShareJncModule {
-  /**
-   * @deprecated Use `NgShareJncModule` instead.
-   */
-  static forRoot(config: AbmConfig): ModuleWithProviders {
+  static forRoot(config: CampConfig): ModuleWithProviders {
+    console.log('forRoot', config);
     return {
       ngModule: NgShareJncModule,
       providers: [
-        { provide: AbmConfig, useValue: config }
+        // ConfigService, CampConfig,
+        { provide: CampConfig, useValue: config }
       ]
     };
   }

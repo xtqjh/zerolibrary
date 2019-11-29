@@ -16,6 +16,23 @@
   imports: [
     ...
     NgShareJncModule.forRoot({ GatewayUrl: environment.GatewayUrl }),
+    OR
+    NgShareJncModule.forRoot({ GatewayUrl: environment.GatewayUrl, Production: environment.Production, DebugToken: environment.DebugToken }),
+    ...
+  ]
+```
+
+### 配置 - angular.json
+```ts
+  "styles": [
+    ...
+    "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"
+    ...
+  ],
+  "scripts": [
+    ...
+    "node_modules/jquery/dist/jquery.min.js",
+    "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"
     ...
   ]
 ```
