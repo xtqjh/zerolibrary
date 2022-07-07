@@ -23,7 +23,7 @@
     "core-js": "^2.5.4",
     "desktopstyle": "git+https://code.aliyun.com/21022281/Public-style-icon.git#0.0.31",
     "jsw-electron-sdk": "git+https://code.aliyun.com/hadaniceday/jsw-electron-sdk.git",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "ng-share-desktop": "0.0.0-beta.0.45",
     "ng-share-jnc": "0.0.6",
     "ng-zorro-antd": "^7.0.0-rc.3",
